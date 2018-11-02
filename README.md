@@ -1,4 +1,4 @@
-﻿#Tehtäviä ohjelmiotekniikkakurssille
+﻿# Tehtäviä ohjelmiotekniikkakurssille
 
 
 Kurssilla harjoitellaan *muotoilemaan* tekstiä, vaikka halusinvain opetella 
@@ -7,6 +7,6 @@ omat muutokset on kommentoitu "tein muutoksia" :boom:.
 
 
 
--[x] Pushaa aina masteriin
+- [x] Pushaa aina masteriin
 
--[ ]  älä tee sitä joskus 
+- [ ] Älä tee sitä joskus 
