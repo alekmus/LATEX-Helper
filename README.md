@@ -1,12 +1,5 @@
-﻿# Tehtäviä ohjelmiotekniikkakurssille
-
-
-Kurssilla harjoitellaan *muotoilemaan* tekstiä, vaikka halusinvain opetella 
-git **Blamen**, jolla voin syyttää muita, kun kommentoin kaikki 
-omat muutokset on kommentoitu "tein muutoksia" :boom:.
-
-
-
-- [x] Pushaa aina masteriin
-
-- [ ] Älä tee sitä joskus 
+﻿# Tehtäviä ohjelmistotekniikkakurssille
+## Tehtävät
+### Viikko 1
+  [*gitlog*](https://github.com/alekmus/OT-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+  [*komentorivi*]()
