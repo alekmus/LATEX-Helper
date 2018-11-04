@@ -1,0 +1,3 @@
+pvm   tunnit  kommentti
+
+4.11     3    Projektin suunnittelua ja mavenin luonti
