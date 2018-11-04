@@ -1,4 +1,4 @@
-# Ohjelmistotekniikan harjoitustyö 
+# LATEX-Helper 
 *Placeholder hamsters* :hamster: :hamster: 
 ## Tehtävät:
 ### Viikko 1
