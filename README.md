@@ -1,4 +1,4 @@
-# LATEX-Helper 
+# LaTeX-Helper 
 *Placeholder hamsters* :hamster: :hamster: 
 ## Tehtävät:
 ### Viikko 1
