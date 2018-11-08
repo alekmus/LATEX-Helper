@@ -46,8 +46,8 @@ public class HelperUI extends Application{
         window.show();
     }
     
-    public static void main(String[] args){
-        launch(HelperUI.class);   
-    }
+//    public static void main(String[] args){
+//        launch(HelperUI.class);   
+//    }
     
 }
