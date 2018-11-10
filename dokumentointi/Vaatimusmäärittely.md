@@ -1,9 +1,9 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen. 
+Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen tekstipainotteinen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen. 
 
-Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjälle, joka tarvitsee ohjelmaa vain yksinkertaisen dokumentin laatimiseksi ja jonka ei siten kannata opetella koko ladontajärjestelmän syntaksia.
+Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjälle, joka tarvitsee ladontaohjelmaa vain yksinkertaisen dokumentin laatimiseksi ja jonka ei siten kannata opetella koko ladontajärjestelmän syntaksia. 
 
 ## Käyttöliittymäluonnos
 ![ui-luonnos](https://raw.githubusercontent.com/alekmus/LATEX-Helper/master/dokumentointi/Latexhelperui_1.jpg)
@@ -25,3 +25,4 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 * Käyttäjä voi esikatsella ja tulostaa pdf-/kuvatiedoston suoraan ohjelman sisältä koodin kopioimisen sijaan
 * Käyttäjä voi tallentaa profiileja, joihin on liitetty tietyt paketit tai muita asetuksia
 * Käyttäjä voi käyttää ohjelmaa latomaan poikkeuksellisia muotoiluja tavanomaisten tekstidokumenttien lisäksi
+* Dokumenttien tallentaminen ja lataaminen tiedostosta
