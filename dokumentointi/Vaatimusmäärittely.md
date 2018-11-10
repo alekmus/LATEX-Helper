@@ -12,3 +12,4 @@ Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-d
 * Käyttäjä voi valita haluamansa fontit, asiakirjatyypit ja paketit valikosta
 ### Jatkokehitys
 * Käyttäjä voi esikatsella ja tulostaa pdf-/kuvatiedoston suoraan ohjelman sisältä koodin kopioimisen sijaan
+* Käyttäjä voi tallentaa profiileja, joihin on liitetty tietyt paketit tai muita asetuksia
