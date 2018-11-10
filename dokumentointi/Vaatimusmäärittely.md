@@ -1,7 +1,9 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen.
+Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen. 
+
+Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjälle, joka tarvitsee ohjelmaa vain yksinkertaisen dokumentin laatimiseksi ja jonka ei siten kannata opetella koko ladontajärjestelmän syntaksia.
 
 ## Käyttöliittymäluonnos
 ![ui-luonnos](https://raw.githubusercontent.com/alekmus/LATEX-Helper/master/dokumentointi/Latexhelperui_1.jpg)
@@ -9,10 +11,17 @@ Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-d
 ## Toiminnallisuudet
 ### Ydintoiminnallisuus
 * Käyttäjä voi kirjoittaa tekstikenttään 1 tekstiä, jonka perusteella ohjelma luo tekstikenttään 2 LATEX-koodia, joka yrittää mukailla tekstin muotoilua
-  * Käyttäjä voi kopioida LATEX-koodin tekstikentästä 2 toiseen ohjelmaan, joka tulkitsee koodin ja tulostaa pdf-dokumentin
+  * Käyttäjä voi kopioida LATEX-koodin tekstikentästä 2 kolmannen osapuolen ohjelmaan, joka tulkitsee koodin ja tulostaa pdf-dokumentin
+* Ohjelma pystyy erottamaan kappalejaot sekä otsikot
+* Ohjelma tulkitsee toivotut palstajaot oikein
+* Ohjelma tuo dokumentin vaatimat oletuspaketit/-syntaksin
+* Ohjelma muuttaa lainausmerkit oikeanmalliseksi
+* Ohjelma muuttaa ääkköset ja muut erikoismerkit yhteensopivaan LATEX-muotoon
+* Ohjelma muuttaa listan LATEX-muotoon
 ### Lisätoiminnallisuus
-* Käyttäjä voi etsiä yleisimpien matemaattisten kaavojen LATEX-muotoiluja ja kopioida ne suoraan tekstin sekaan
+* Käyttäjä voi etsiä yleisimpien matemaattisten kaavojen LATEX-muotoiluja ja nähdä ne esikatselussa
 * Käyttäjä voi valita haluamansa fontit, asiakirjatyypit ja paketit valikosta
 ### Jatkokehitys
 * Käyttäjä voi esikatsella ja tulostaa pdf-/kuvatiedoston suoraan ohjelman sisältä koodin kopioimisen sijaan
 * Käyttäjä voi tallentaa profiileja, joihin on liitetty tietyt paketit tai muita asetuksia
+* Käyttäjä voi käyttää ohjelmaa latomaan poikkeuksellisia muotoiluja tavanomaisten tekstidokumenttien lisäksi
