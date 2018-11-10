@@ -4,8 +4,7 @@
 Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen.
 
 ## Käyttöliittymäluonnos
-![ui-luonnos](LATEX-Helper/dokumentointi/Latexhelperui_1.jpg)
-      
+![ui-luonnos](https://raw.githubusercontent.com/alekmus/LATEX-Helper/master/dokumentointi/Latexhelperui_1.jpg)
 
 ## Toiminnallisuudet
 ### Ydintoiminnallisuus
