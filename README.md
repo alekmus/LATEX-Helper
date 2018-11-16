@@ -10,5 +10,7 @@
   [**komentorivi**](https://github.com/alekmus/OT-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 ### Viikko2 
   [**testikattavuus**](LATEX-Helper/laskarit/viikko2/Unicafeen testikattavuus.png)
+  
   [**unicafe**](https://github.com/alekmus/LATEX-Helper/tree/master/laskarit/viikko2/Unicafe)
+  
   [**maksukortti**](https://github.com/alekmus/LATEX-Helper/tree/master/laskarit/viikko2/Maksukortti)
