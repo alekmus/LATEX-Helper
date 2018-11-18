@@ -14,3 +14,7 @@
   [**unicafe**](https://github.com/alekmus/LATEX-Helper/tree/master/laskarit/viikko2/Unicafe)
   
   [**maksukortti**](https://github.com/alekmus/LATEX-Helper/tree/master/laskarit/viikko2/Maksukortti)
+### Viikko3
+  [**Luokkakaavio**](https://github.com/alekmus/LATEX-Helper/blob/master/laskarit/viikko3/luokkakaavio.jpg)
+  [**HSL-sekvenssikaavio**](https://github.com/alekmus/LATEX-Helper/blob/master/laskarit/viikko3/HSL%20sekvenssikaavio.png)
+  [**Kone-sekvenssikaavio**](https://github.com/alekmus/LATEX-Helper/blob/master/laskarit/viikko3/Sekvenssikaavio%20machine.png)
