@@ -2,7 +2,7 @@
 ## Dokumentaatio
 [Vaatimusmäärittely](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/Vaatimusm%C3%A4%C3%A4rittely.md)
 
-[Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/ty%C3%B6aikakirjanpito.txt) 
+[Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/ty%C3%B6aikakirjanpito.md) 
 ## Tehtävät
 ### Viikko 1
   [**gitlog**](https://github.com/alekmus/OT-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
