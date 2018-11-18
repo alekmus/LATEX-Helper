@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import latex.helper.domain.Header;
 import latex.helper.domain.LTXCodeDoc;
 import latex.helper.domain.ParagraphParser;
+import latex.helper.domain.SectionParser;
         
 /**
  *
@@ -32,6 +34,12 @@ public class HelperUI extends Application{
         TextArea txt_target = new TextArea();
         txt_target.setEditable(false);
         
+        HBox toptions = new HBox();
+        Button file = new Button("Tiedosto");
+        toptions.getChildren().add(file);
+        toptions.setMinHeight(20.0);
+        layout.setTop(toptions);
+        
         VBox sideOptions = new VBox();
         sideOptions.setMinWidth(100.0);
         HBox fields = new HBox();
@@ -43,7 +51,8 @@ public class HelperUI extends Application{
                 Arrays.asList("\\documentclass[a4paper,12pt]{article}"));
         
         ParagraphParser pp = new ParagraphParser();
-        LTXCodeDoc lcd = new LTXCodeDoc(head,new ArrayList(Arrays.asList(pp)));
+        SectionParser sp = new SectionParser();
+        LTXCodeDoc lcd = new LTXCodeDoc(head,new ArrayList(Arrays.asList(pp,sp)));
         txt_target.setText(lcd.toString());
                 
         txt.textProperty().addListener((obs,o,n)-> {
