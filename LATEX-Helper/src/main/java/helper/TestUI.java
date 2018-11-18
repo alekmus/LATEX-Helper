@@ -1,9 +1,9 @@
-package latex.helper;
+package helper;
 import java.util.ArrayList;
 import java.util.Arrays;
-import latex.helper.domain.Header;
-import latex.helper.domain.LTXCodeDoc;
-import latex.helper.domain.ParagraphParser;
+import helper.domain.Header;
+import helper.domain.LTXCodeDoc;
+import helper.domain.ParagraphParser;
 
 public class TestUI {
     

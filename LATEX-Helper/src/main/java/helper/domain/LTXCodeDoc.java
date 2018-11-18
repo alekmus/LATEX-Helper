@@ -1,4 +1,4 @@
-package latex.helper.domain;
+package helper.domain;
 
 import java.util.ArrayList;
 import java.util.List;

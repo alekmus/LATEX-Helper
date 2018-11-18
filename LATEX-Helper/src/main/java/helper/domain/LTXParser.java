@@ -1,4 +1,4 @@
-package latex.helper.domain;
+package helper.domain;
 
 public interface LTXParser {
    public String parse(String string);

@@ -1,4 +1,4 @@
-package latex.helper;
+package helper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +10,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import latex.helper.domain.Header;
-import latex.helper.domain.LTXCodeDoc;
-import latex.helper.domain.ParagraphParser;
-import latex.helper.domain.SectionParser;
+import helper.domain.Header;
+import helper.domain.LTXCodeDoc;
+import helper.domain.ParagraphParser;
+import helper.domain.SectionParser;
         
 /**
  *
