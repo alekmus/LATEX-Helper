@@ -14,7 +14,6 @@ public class TestUI {
         lista.add("olen kauris");
         String str = "";
         
-        System.out.println(str
-        );
+        System.out.println(new ParagraphParser().parse("    toimiiko tämä"));
     }
 }

@@ -30,7 +30,8 @@ public class LTXCodeDoc {
     @Override
     public String toString(){
         String str = this.header.toString();
-        str +="\\begin{"+this.header.getDoctype()
+        str += "\\begin{"
+                +this.header.getDoctype()
                 +"}\n"
                 +doc
                 +"\n\\end{"

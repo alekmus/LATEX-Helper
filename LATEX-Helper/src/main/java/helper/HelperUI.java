@@ -1,6 +1,5 @@
 package helper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import helper.domain.Header;
 import helper.domain.LTXCodeDoc;
+import helper.domain.LineParser;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
 import helper.domain.SectionParser;
@@ -55,10 +55,10 @@ public class HelperUI extends Application{
         
         Header head = new Header(
                 Arrays.asList("\\documentclass[a4paper,12pt]{article}"));
-        
+        LineParser lp = new LineParser();
         ParagraphParser pp = new ParagraphParser();
         SectionParser sp = new SectionParser();
-        ParserCollection pc = new ParserCollection(pp,sp);
+        ParserCollection pc = new ParserCollection(pp,sp,lp);
         LTXCodeDoc lcd = new LTXCodeDoc(head,pc);
         txt_target.setText(lcd.toString());
                 
