@@ -5,9 +5,10 @@ import java.util.stream.Collectors;
 
 public class Header {
     private List header;
-    
+    private String doctype;
     public Header(List<String> packages){
         this.header = packages.stream().collect(Collectors.toList());
+        this.doctype = "document";
     }    
     
     public void setHeader(List repl){
@@ -33,5 +34,7 @@ public class Header {
         return string;
     }
     
-    
+    public String getDoctype(){
+        return this.doctype;
+    }
 }

@@ -1,5 +1,5 @@
 package helper.domain;
 
-public interface LTXParser {
-   public String parse(String string);
+public interface LTXParser<T> {
+   public T parse(String string);
 }

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import helper.domain.Header;
 import helper.domain.LTXCodeDoc;
 import helper.domain.ParagraphParser;
+import helper.domain.ParserCollection;
 import helper.domain.SectionParser;
         
 /**
@@ -25,17 +26,22 @@ public class HelperUI extends Application{
     public void start(Stage window){
        
         window.setTitle("LaTeX Helper");
+        window.setHeight(500);
+        window.setWidth(1000);
         BorderPane layout = new BorderPane();       
         
         TextArea txt = new TextArea();
+        txt.setWrapText(true);
         VBox midbox = new VBox();
         midbox.getChildren().add(txt);
         
+        
         TextArea txt_target = new TextArea();
+        txt_target.setWrapText(true);
         txt_target.setEditable(false);
         
         HBox toptions = new HBox();
-        Button file = new Button("Tiedosto");
+        Button file = new Button("---");
         toptions.getChildren().add(file);
         toptions.setMinHeight(20.0);
         layout.setTop(toptions);
@@ -52,7 +58,8 @@ public class HelperUI extends Application{
         
         ParagraphParser pp = new ParagraphParser();
         SectionParser sp = new SectionParser();
-        LTXCodeDoc lcd = new LTXCodeDoc(head,new ArrayList(Arrays.asList(pp,sp)));
+        ParserCollection pc = new ParserCollection(pp,sp);
+        LTXCodeDoc lcd = new LTXCodeDoc(head,pc);
         txt_target.setText(lcd.toString());
                 
         txt.textProperty().addListener((obs,o,n)-> {
@@ -60,18 +67,6 @@ public class HelperUI extends Application{
             lcd.parse();
             txt_target.setText(lcd.toString());
         });
-                
-        System.out.println("It was the best of times, it was the worst of times, \n"
-                + "it was the age of wisdom, it was the age of foolishness, \n"
-                + "it was the epoch of belief, it was the epoch of incredulity, \n"
-                + "it was the season of Light, it was the season of Darkness, \n"
-                + "it was the spring of hope, it was the winter of despair, \n\t"
-                + "we had everything before us, we had nothing before us, \n"
-                + "we were all going direct to Heaven, we were all going direct \n"
-                + "the other way—in short, the period was so far like \n"
-                + "the present period, that some of its noisiest authorities \n"
-                + "insisted on its being received, for good or for evil, \n"
-                + "in the superlative degree of comparison only.");
         
         Scene scene = new Scene(layout);
         txt.requestFocus();
