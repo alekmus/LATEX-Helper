@@ -15,6 +15,7 @@ import helper.domain.LineParser;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
 import helper.domain.SectionParser;
+import helper.domain.UmlautParser;
         
 /**
  *
@@ -55,11 +56,16 @@ public class HelperUI extends Application{
         
         Header head = new Header(
                 Arrays.asList("\\documentclass[a4paper,12pt]{article}"));
+        
+        UmlautParser up = new UmlautParser();
         LineParser lp = new LineParser();
         ParagraphParser pp = new ParagraphParser();
         SectionParser sp = new SectionParser();
-        ParserCollection pc = new ParserCollection(pp,sp,lp);
+        ParserCollection pc = new ParserCollection(pp,sp,up,lp);
+        
+        
         LTXCodeDoc lcd = new LTXCodeDoc(head,pc);
+        
         txt_target.setText(lcd.toString());
                 
         txt.textProperty().addListener((obs,o,n)-> {

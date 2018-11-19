@@ -14,9 +14,9 @@ import java.util.Arrays;
  */
 public class LineParser implements MacroParser{
     
-    
-    public ArrayList<String> parse(String string){
-        ArrayList<String> parts = new ArrayList(Arrays.asList(string.replace("\n", "\\\\\n").split("(?<=\\n)")));
+    public ArrayList<String> parse(String str){
+        str = str.replace("\n", "\\\\\n");
+        ArrayList<String> parts = new ArrayList(Arrays.asList(str.split("(?<=\\n)")));
         return parts;
 
     }

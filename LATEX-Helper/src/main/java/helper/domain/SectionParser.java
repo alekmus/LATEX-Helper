@@ -7,17 +7,17 @@ public class SectionParser implements MacroParser{
     
     public ArrayList<String> parse(String string){
         ArrayList<String> parts = new ArrayList(
-                Arrays.asList(string.split("(?<=\\n\\n)")));
+                Arrays.asList(string.split("\\n\\n")));
         
         for(int i = 1; i<parts.size(); i++){
             if(parts.get(i).length()<N && !parts.get(i).isEmpty()){
-                parts.set(i,"\\section{"+parts.get(i).trim()+"}\n");
+                parts.set(i,"\n\n\\section{"+parts.get(i).trim()+"}\n");
                 if(i+1<parts.size()){
                     parts.set(i, parts.get(i)+parts.get(i+1).trim());
                     parts.remove(i+1);
                 }    
             }else if(!parts.get(i).equals("\\s")&& !parts.get(i).isEmpty()){
-                parts.set(i,"\\section{}\n"+parts.get(i).trim());
+                parts.set(i,"\n\n\\section{}\n"+parts.get(i).trim()+"\n");
             }
         }
         
