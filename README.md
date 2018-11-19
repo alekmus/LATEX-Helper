@@ -7,3 +7,14 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 
 [Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/ty%C3%B6aikakirjanpito.md) 
 
+## Komentorivitoiminnot
+Testit suoritetaan komennolla
+´´´
+mvn test
+´´´
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn jacoco:report
+```
