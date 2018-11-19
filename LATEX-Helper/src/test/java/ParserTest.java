@@ -48,8 +48,8 @@ public class ParserTest {
     @Test
     public void lineParserChopsUpLinesWithNewline(){
         ArrayList<String> list = lp.parse("hello\nI am a great big\nhuge womble");
-        assertEquals("hello\n",list.get(0));
-        assertEquals("I am a great big\n",list.get(1));
+        assertEquals("hello\\\\\n",list.get(0));
+        assertEquals("I am a great big\\\\\n",list.get(1));
         assertEquals("huge womble",list.get(2));
     }
 }    
