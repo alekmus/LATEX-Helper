@@ -41,8 +41,8 @@ public class ParserTest {
     @Test
     public void sectionParserCreatesSectionHeaderAfterTwoNewlines(){
         ArrayList<String> list = sp.parse("hello\n\nhello");
-        assertEquals("hello\n\n",list.get(0));
-        assertEquals("\\section{hello}\n",list.get(1));
+        assertEquals("hello",list.get(0));
+        assertEquals("\n\n\\section{hello}\n",list.get(1));
     }
     
     @Test
