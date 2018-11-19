@@ -9,12 +9,11 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 
 ## Komentorivitoiminnot
 Testit suoritetaan komennolla
-´´´
+```
 mvn test
-´´´
+```
 
 Testikattavuusraportti luodaan komennolla
-
 ```
 mvn jacoco:report
 ```
