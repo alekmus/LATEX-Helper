@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Header {
     private List header;
     private String doctype;
+    
     public Header(List<String> packages){
         this.header = packages.stream().collect(Collectors.toList());
         this.doctype = "document";

@@ -45,7 +45,6 @@ public class ParserCollection {
     }
     
     public String parseDoc(String docstring){
-        System.out.println(docstring);
         ArrayList<String> parts = new ArrayList();
         ArrayList<String> temp = new ArrayList();
         parts.add(docstring);
