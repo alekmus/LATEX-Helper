@@ -5,9 +5,10 @@ import java.util.Arrays;
 public class SectionParser implements MacroParser{
     private final int N = 30;
     
-    public ArrayList<String> parse(String string){
+    @Override
+    public ArrayList<String> parse(String str){
         ArrayList<String> parts = new ArrayList(
-                Arrays.asList(string.split("\\n\\n")));
+                Arrays.asList(str.split("\\n\\n")));
         
         for(int i = 1; i<parts.size(); i++){
             if(parts.get(i).length()<N && !parts.get(i).isEmpty()){

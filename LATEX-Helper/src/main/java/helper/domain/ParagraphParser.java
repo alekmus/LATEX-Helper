@@ -4,12 +4,12 @@ import java.util.regex.Matcher;
 
 public class ParagraphParser implements MicroParser{
     
-    
-    public String parse(String string){
+    @Override
+    public String parse(String str){
         String pattern = "^\\s+";
         Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(string);
-        string = m.replaceAll("\n");
-        return string;
+        Matcher m = p.matcher(str);
+        str = m.replaceAll("\n");
+        return str;
     }
 }

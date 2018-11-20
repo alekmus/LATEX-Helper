@@ -24,6 +24,7 @@ public class UmlautParser implements MicroParser{
         chars.put("Å", "\\r{A}"); 
     }
     
+    @Override
     public String parse(String str){
         for(String c: chars.keySet()){
             str = str.replace(c, chars.get(c));

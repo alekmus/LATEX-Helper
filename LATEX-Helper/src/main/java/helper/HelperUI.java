@@ -14,6 +14,7 @@ import helper.domain.LTXCodeDoc;
 import helper.domain.LineParser;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
+import helper.domain.QuoteParser;
 import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
         
@@ -57,11 +58,14 @@ public class HelperUI extends Application{
         Header head = new Header(
                 Arrays.asList("\\documentclass[a4paper,12pt]{article}"));
         
+        QuoteParser qp = new QuoteParser();
         UmlautParser up = new UmlautParser();
         LineParser lp = new LineParser();
         ParagraphParser pp = new ParagraphParser();
         SectionParser sp = new SectionParser();
-        ParserCollection pc = new ParserCollection(pp,sp,up,lp);
+        
+        
+        ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         
         LTXCodeDoc lcd = new LTXCodeDoc(head,pc);
