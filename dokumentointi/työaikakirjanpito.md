@@ -4,4 +4,4 @@
 |10.11|5|Vaatimusmäärittely ja palstaparserin sekä gui:n koodaamista|
 |19.11|8|Rakennemuutoksia ohjelmaan, uuden parseriluokan kirjoitus,
 gui-säätöä, lineparser ja paragraphparser toimintaan+bugeja|
-|20.11|1|Sitaattiparseri|
+|20.11|8|Sitaattiparseri, gui:ia ja titlepage|
