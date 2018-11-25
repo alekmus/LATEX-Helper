@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helper.domain;
+package helper.parsers;
 
 import java.util.HashMap;
 
@@ -11,10 +11,10 @@ import java.util.HashMap;
  *
  * @author Aleksi
  */
-public class UmlautParser implements MicroParser{
-    private HashMap<String,String> chars;
+public class UmlautParser implements MicroParser {
+    private HashMap<String, String> chars;
     
-    public UmlautParser(){
+    public UmlautParser() {
         chars = new HashMap();
         chars.put("ä", "\\¨{a}");
         chars.put("ö", "\\¨{o}"); 
@@ -25,8 +25,8 @@ public class UmlautParser implements MicroParser{
     }
     
     @Override
-    public String parse(String str){
-        for(String c: chars.keySet()){
+    public String parse(String str) {
+        for (String c: chars.keySet()) {
             str = str.replace(c, chars.get(c));
         }
         return str;

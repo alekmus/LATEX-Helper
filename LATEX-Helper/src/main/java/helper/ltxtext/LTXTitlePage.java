@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helper.domain;
+package helper.ltxtext;
 
 /**
  *
@@ -17,7 +17,7 @@ public class LTXTitlePage {
     private String title;
     private boolean tableOCOn;
     
-    public LTXTitlePage(){
+    public LTXTitlePage() {
         this.pageNumsOn = true;
         this.author = "Author";
         this.opens = "{\\begingroup\n"
@@ -25,54 +25,54 @@ public class LTXTitlePage {
                 + "\\pagenumbering{gobble}\n"
                 + "\\vspace*{\\fill}\n\n";
         this.closes = "\\date*{\\today}\n\n"
-                +"\\vspace*{\\fill}\n"
-                +"\\endgroup}\n";
+                + "\\vspace*{\\fill}\n"
+                + "\\endgroup}\n";
         this.title = "";
         this.tableOCOn = true;
     }
     
-    public void setpageNumsOn(boolean value){
+    public void setpageNumsOn(boolean value) {
         this.pageNumsOn = value;
     }
     
-    public void setAuthor(String repl){
+    public void setAuthor(String repl) {
         this.author = repl;
     }
     
-    public boolean getpageNumsOn(){
+    public boolean getpageNumsOn() {
         return this.pageNumsOn;
     }
     
-    public String getAuthor(){
+    public String getAuthor() {
         return this.author;
     }
     
-    public void setOpens(String repl){
+    public void setOpens(String repl) {
         this.opens = repl;
     }
     
-    public String getOpens(){
+    public String getOpens() {
         return this.opens;
     }
     
-    public void setCloses(String repl){
+    public void setCloses(String repl) {
         this.closes = repl;
     }
     
-    public String getCloses(){
+    public String getCloses() {
         return this.closes;
     }
     
-     public void setTitle(String repl){
+    public void setTitle(String repl) {
         this.title = repl;
     }
     
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
     
     @Override
-    public String toString(){
+    public String toString() {
         String str = "";
         
         str += this.opens;
@@ -82,11 +82,11 @@ public class LTXTitlePage {
         str += this.closes;        
         str += "\\pagebreak\n";
         
-        if(this.pageNumsOn){
+        if (this.pageNumsOn) {
             str += "\\pagenumbering{arabic}\n";
         }
         
-        if(this.tableOCOn){
+        if (this.tableOCOn) {
             str += "\\tableofcontents\n";
         }
         

@@ -1,7 +1,6 @@
-package helper.domain;
+package helper.ltxtext;
 
-import java.util.ArrayList;
-import java.util.List;
+import helper.parsers.ParserCollection;
 
 public class LTXCodeDoc {
     private Header header;
@@ -9,52 +8,52 @@ public class LTXCodeDoc {
     private ParserCollection pc;
     private LTXTitlePage titlePage;
     
-    public LTXCodeDoc(Header header, ParserCollection pc, LTXTitlePage ltp){
+    public LTXCodeDoc(Header header, ParserCollection pc, LTXTitlePage ltp) {
         this.pc = pc;
         this.header = header;
         this.doc = "";
         this.titlePage = ltp; 
     }
     
-    public LTXCodeDoc(Header header, ParserCollection pc){
+    public LTXCodeDoc(Header header, ParserCollection pc) {
         this.pc = pc;
         this.header = header;
         this.doc = "";
     }
     
     
-    public void setText(String replacement){
+    public void setText(String replacement) {
         this.doc = replacement;
     }
     
-    public void parse(){
+    public void parse() {
         this.doc = pc.parseDoc(doc);
     }
     
-    public String getText(){
+    public String getText() {
         return this.doc;
     }
     
-    public void setTitle(String repl){
+    public void setTitle(String repl) {
         this.header.setTitle(repl);
         titlePage.setTitle(repl);
     }
     
-    public void setAuthor(String repl){
+    public void setAuthor(String repl) {
         titlePage.setAuthor(repl);
     }
     
     @Override
-    public String toString(){
+    public String toString() {
         String str = this.header.toString();
         
         str +=  "\\begin{"
-                +this.header.getDoctype()
-                +"}\n"
-                +titlePage
-                +doc
-                +"\n\\end{"
-                +this.header.getDoctype()+"}";
+                + this.header.getDoctype()
+                + "}\n"
+                + titlePage
+                + doc
+                + "\n\\end{"
+                + this.header.getDoctype() + "}";
         return str;
     }
     

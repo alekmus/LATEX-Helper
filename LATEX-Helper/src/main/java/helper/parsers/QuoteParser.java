@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helper.domain;
+package helper.parsers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,25 +12,25 @@ import java.util.Arrays;
  *
  * @author Aleksi
  */
-public class QuoteParser implements MicroParser{
+public class QuoteParser implements MicroParser {
    
     @Override
-    public String parse(String str){
+    public String parse(String str) {
         String out = "";
         ArrayList<String> sents = new ArrayList(Arrays.asList(str.split("(?<=\\.)")));
         
-        for(String sent:sents){
+        for (String sent:sents) {
             boolean prevWasOpen = false;
-            for(int i = 0; i< sent.length(); i++){
-                if(sent.charAt(i)=='"'){
-                    if(!prevWasOpen){
+            for (int i = 0; i < sent.length(); i++) {
+                if (sent.charAt(i) == '"') {
+                    if (!prevWasOpen) {
                         out += "``";
                         prevWasOpen = true;
-                    }else{
+                    } else {
                         out += "''";
                         prevWasOpen = false;
                     }
-                }else{
+                } else {
                     out += sent.charAt(i);
                 }
             }

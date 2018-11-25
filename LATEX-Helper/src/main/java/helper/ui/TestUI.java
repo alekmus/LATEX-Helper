@@ -1,11 +1,5 @@
-package helper;
-import java.util.ArrayList;
-import java.util.Arrays;
-import helper.domain.Header;
-import helper.domain.LTXCodeDoc;
-import helper.domain.MathDAO;
-import helper.domain.ParagraphParser;
-import helper.domain.QuoteParser;
+package helper.ui;
+import helper.dao.MathDAO;
 
 public class TestUI {
     
