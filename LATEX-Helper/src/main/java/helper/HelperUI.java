@@ -12,7 +12,7 @@ import helper.domain.Header;
 import helper.domain.LTXCodeDoc;
 import helper.domain.LTXTitlePage;
 import helper.domain.LineParser;
-import helper.domain.MathFormulaAccessor;
+import helper.domain.MathDAO;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
 import helper.domain.QuoteParser;
@@ -33,7 +33,7 @@ import javafx.scene.layout.Priority;
  */
 public class HelperUI extends Application{
     private LTXCodeDoc lcd;
-    private MathFormulaAccessor mfa; 
+    private MathDAO mado; 
     private ArrayList<String> nots;
     
     @Override
@@ -55,8 +55,8 @@ public class HelperUI extends Application{
         ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         //Initialize the database class and store saved LATEX-notations to nots
-        this.mfa = new MathFormulaAccessor("src/main/resources/helper.db");
-        this.nots = mfa.notations();
+        this.mado = new MathDAO("src/main/resources/helper.db");
+        this.nots = mado.notations();
         
         //Initalize the target code document
         this.lcd = new LTXCodeDoc(head, pc, titlePage);
@@ -84,7 +84,7 @@ public class HelperUI extends Application{
         
         searchbar.valueProperty().addListener((obs,o,n)->{
             try{
-                searchresult.setText("$$"+this.mfa.find(n)+"$$");
+                searchresult.setText("$$"+this.mado.find(n)+"$$");
             }catch(Exception e){
                 searchresult.setText("Problem with database connection");
             }

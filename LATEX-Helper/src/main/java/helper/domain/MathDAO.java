@@ -13,11 +13,11 @@ import java.util.*;
  * @author Aleksi
  */
 
-public class MathFormulaAccessor{
+public class MathDAO{
     private String dbloc;
     
     
-    public MathFormulaAccessor(String databaselocation){
+    public MathDAO(String databaselocation){
         this.dbloc = "jdbc:sqlite:"+databaselocation;
     }
     
@@ -34,11 +34,8 @@ public class MathFormulaAccessor{
             
             while(rs.next()){
                 result += rs.getString("formula");
-            }
-            
+            } 
         };
-        
-        
         return result;
     }
     
