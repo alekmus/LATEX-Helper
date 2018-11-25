@@ -12,14 +12,17 @@ import helper.domain.Header;
 import helper.domain.LTXCodeDoc;
 import helper.domain.LTXTitlePage;
 import helper.domain.LineParser;
+import helper.domain.MathFormulaAccessor;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
 import helper.domain.QuoteParser;
 import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
+import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
@@ -29,6 +32,35 @@ import javafx.scene.layout.Priority;
  * @author Aleksi
  */
 public class HelperUI extends Application{
+    private LTXCodeDoc lcd;
+    private MathFormulaAccessor mfa; 
+    private ArrayList<String> nots;
+    
+    @Override
+    public void init() throws Exception{
+        //Initalize the header and titlepage
+        Header head = new Header(
+                Arrays.asList("\\documentclass[a4paper,12pt]{article}",
+                        "\\usepackage[utf8]{inputenc}",
+                        "\\usepackage[Finnish]{babel}" ));
+        LTXTitlePage titlePage = new LTXTitlePage();
+
+        
+        //Initialize parsers and their collection
+        QuoteParser qp = new QuoteParser();
+        UmlautParser up = new UmlautParser();
+        LineParser lp = new LineParser();
+        ParagraphParser pp = new ParagraphParser();
+        SectionParser sp = new SectionParser();
+        ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
+        
+        //Initialize the database class and store saved LATEX-notations to nots
+        this.mfa = new MathFormulaAccessor("src/main/resources/helper.db");
+        this.nots = mfa.notations();
+        
+        //Initalize the target code document
+        this.lcd = new LTXCodeDoc(head, pc, titlePage);
+    }
     
     @Override
     public void start(Stage window){
@@ -46,8 +78,17 @@ public class HelperUI extends Application{
         
         HBox mathModeSearch = new HBox();
         
-        TextField searchbar = new TextField();
+        ComboBox<String> searchbar = new ComboBox();
+        searchbar.getItems().addAll(nots);
         TextField searchresult = new TextField();
+        
+        searchbar.valueProperty().addListener((obs,o,n)->{
+            try{
+                searchresult.setText("$$"+this.mfa.find(n)+"$$");
+            }catch(Exception e){
+                searchresult.setText("Problem with database connection");
+            }
+        });
         
         mathModeSearch.getChildren().addAll(searchbar,searchresult);
         mathModeSearch.setPadding(new Insets(5,0,5,0));
@@ -80,24 +121,7 @@ public class HelperUI extends Application{
         HBox fields = new HBox();
         fields.getChildren().addAll(sideOptions, midBox, rightBox);
         
-        layout.setCenter(fields);
-        
-        Header head = new Header(
-                Arrays.asList("\\documentclass[a4paper,12pt]{article}",
-                        "\\usepackage[utf8]{inputenc}",
-                        "\\usepackage[Finnish]{babel}" ));
-        
-        QuoteParser qp = new QuoteParser();
-        UmlautParser up = new UmlautParser();
-        LineParser lp = new LineParser();
-        ParagraphParser pp = new ParagraphParser();
-        SectionParser sp = new SectionParser();
-        
-        
-        ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
-        LTXTitlePage titlePage = new LTXTitlePage();
-        
-        LTXCodeDoc lcd = new LTXCodeDoc(head, pc, titlePage);
+        layout.setCenter(fields);        
         
         txtTarget.setText(lcd.toString());
         
@@ -118,6 +142,11 @@ public class HelperUI extends Application{
         txt.requestFocus();
         window.setScene(scene);
         window.show();
+    }
+    
+    @Override
+    public void stop(){
+        System.out.println("Sovellus suljettu");
     }
     
     public static void main(String[] args){
