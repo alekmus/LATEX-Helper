@@ -1,1 +1,1 @@
-![pakkauskaavio](LATEX-Helper/dokumentointi/packagediagram.png)
+![pakkauskaavio](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/packagediagram.png)
