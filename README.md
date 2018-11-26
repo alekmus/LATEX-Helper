@@ -7,6 +7,8 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 
 [Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/ty%C3%B6aikakirjanpito.md) 
 
+[Arkkitehtuuri](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/arkkitehtuuri.md)
+
 ## Komentorivitoiminnot
 Testit suoritetaan komennolla
 ```
