@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helper.parsers;
+package helper.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

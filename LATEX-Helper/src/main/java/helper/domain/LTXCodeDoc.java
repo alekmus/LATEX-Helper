@@ -1,6 +1,6 @@
-package helper.ltxtext;
+package helper.domain;
 
-import helper.parsers.ParserCollection;
+import helper.domain.ParserCollection;
 
 public class LTXCodeDoc {
     private Header header;

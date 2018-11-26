@@ -1,4 +1,4 @@
-package helper.parsers;
+package helper.domain;
 import java.util.regex.Pattern; 
 import java.util.regex.Matcher;
 

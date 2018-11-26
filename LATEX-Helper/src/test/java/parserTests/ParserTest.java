@@ -1,12 +1,12 @@
 package parserTests;
 
-import helper.parsers.LTXParser;
-import helper.parsers.LineParser;
-import helper.parsers.ParagraphParser;
-import helper.parsers.ParserCollection;
-import helper.parsers.QuoteParser;
-import helper.parsers.SectionParser;
-import helper.parsers.UmlautParser;
+import helper.domain.LTXParser;
+import helper.domain.LineParser;
+import helper.domain.ParagraphParser;
+import helper.domain.ParserCollection;
+import helper.domain.QuoteParser;
+import helper.domain.SectionParser;
+import helper.domain.UmlautParser;
 import java.util.ArrayList;
 import org.junit.Before;
 import static org.junit.Assert.*;

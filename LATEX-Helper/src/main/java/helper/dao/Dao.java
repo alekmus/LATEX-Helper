@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helper.parsers;
-
-import java.util.ArrayList;
+package helper.dao;
 
 /**
  *
  * @author Aleksi
  */
-public interface MacroParser extends LTXParser<ArrayList> {
-    
+public interface Dao {
+    public String find(String str);
 }

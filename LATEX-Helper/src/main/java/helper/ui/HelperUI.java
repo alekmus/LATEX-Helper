@@ -8,21 +8,25 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import helper.ltxtext.Header;
-import helper.ltxtext.LTXCodeDoc;
-import helper.ltxtext.LTXTitlePage;
-import helper.parsers.LineParser;
-import helper.dao.MathDAO;
-import helper.parsers.ParagraphParser;
-import helper.parsers.ParserCollection;
-import helper.parsers.QuoteParser;
-import helper.parsers.SectionParser;
-import helper.parsers.UmlautParser;
+import helper.domain.Header;
+import helper.domain.LTXCodeDoc;
+import helper.domain.LTXTitlePage;
+import helper.domain.LineParser;
+import helper.dao.MathDao;
+import helper.domain.ParagraphParser;
+import helper.domain.ParserCollection;
+import helper.domain.QuoteParser;
+import helper.domain.SectionParser;
+import helper.domain.UmlautParser;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.geometry.Side;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
@@ -33,7 +37,7 @@ import javafx.scene.layout.Priority;
  */
 public class HelperUI extends Application{
     private LTXCodeDoc lcd;
-    private MathDAO mado; 
+    private MathDao mado; 
     private ArrayList<String> nots;
     
     @Override
@@ -55,7 +59,7 @@ public class HelperUI extends Application{
         ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         //Initialize the database class and store saved LATEX-notations to nots
-        this.mado = new MathDAO("src/main/resources/helper.db");
+        this.mado = new MathDao("src/main/resources/helper.db");
         this.nots = mado.notations();
         
         //Initalize the target code document
@@ -68,7 +72,7 @@ public class HelperUI extends Application{
         window.setTitle("LaTeX Helper");
         window.setHeight(500);
         window.setWidth(1000);
-        BorderPane layout = new BorderPane();       
+        BorderPane layout = new BorderPane();
         
         TextField title = new TextField();
         title.setPromptText("Title of your document");
@@ -93,11 +97,10 @@ public class HelperUI extends Application{
         mathModeSearch.getChildren().addAll(searchbar,searchresult);
         mathModeSearch.setPadding(new Insets(5,0,5,0));
         mathModeSearch.setAlignment(Pos.CENTER);
-        ImageView preview = new ImageView();
         
         VBox midBox = new VBox();
         midBox.setPadding(new Insets(0,5,5,5));
-        midBox.getChildren().addAll(title,txt,mathModeSearch,preview);
+        midBox.getChildren().addAll(title,txt,mathModeSearch);
                 
         TextArea txtTarget = new TextArea();
         txtTarget.setPrefHeight(Integer.MAX_VALUE);
@@ -110,14 +113,35 @@ public class HelperUI extends Application{
         rightBox.setPadding(new Insets(0,5,5,0));
         VBox.setVgrow(rightBox, Priority.ALWAYS);
                 
-        HBox toptions = new HBox();
-        Button filebutton = new Button();
-        toptions.getChildren().add(filebutton);
-        toptions.setMinHeight(20.0);
-        layout.setTop(toptions);
+        
+        
+        Menu file = new Menu("File");
+        MenuItem saveItem = new MenuItem("Save");
+        MenuItem exitItem = new MenuItem("Exit");
+
+        file.getItems().add(saveItem);
+        file.getItems().add(exitItem);
+        
+        MenuBar menubar = new MenuBar(file);
+        layout.setTop(menubar);
         
         VBox sideOptions = new VBox();
+        sideOptions.setPadding(new Insets(0,5,5,5));
         sideOptions.setMinWidth(100.0);
+        sideOptions.setMaxWidth(100.0);
+        sideOptions.setFillWidth(true);
+        
+        MenuButton font = new MenuButton("Font");
+        font.setPrefWidth(Double.MAX_VALUE);
+        font.setPopupSide(Side.BOTTOM);
+        MenuItem fontprop = new MenuItem("Font");
+        font.getItems().add(fontprop);
+        MenuButton setup = new MenuButton("Set up");
+        setup.setPrefWidth(Double.MAX_VALUE);
+        
+        
+        sideOptions.getChildren().addAll(setup,font);
+                
         HBox fields = new HBox();
         fields.getChildren().addAll(sideOptions, midBox, rightBox);
         

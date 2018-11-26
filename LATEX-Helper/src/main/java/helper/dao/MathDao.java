@@ -13,19 +13,26 @@ import java.util.*;
  * @author Aleksi
  */
 
-public class MathDAO {
+public class MathDao implements Dao{
     private String dbloc;
     
     
-    public MathDAO(String databaselocation) {
+    public MathDao(String databaselocation) {
         this.dbloc = "jdbc:sqlite:" + databaselocation;
     }
     
-    public String find(String str) throws Exception {
-        Class.forName("org.sqlite.JDBC");
+    @Override
+    public String find(String str){
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (Exception e){
+            System.out.println(e);
+        }
         String result = "";
         
-        try (Connection connection = DriverManager.getConnection(this.dbloc)) {
+        try{
+            Connection connection = DriverManager.getConnection(this.dbloc);
+            
             
             String query = "Select * FROM mathformulas WHERE name = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -35,7 +42,9 @@ public class MathDAO {
             while (rs.next()) {
                 result += rs.getString("formula");
             } 
-        };
+        } catch (Exception e){
+            System.out.println(e);
+        }
         return result;
     }
     
@@ -44,7 +53,7 @@ public class MathDAO {
         ArrayList<String> nots = new ArrayList();
         
         try (Connection connection = DriverManager.getConnection(this.dbloc)) {
-            String query = "Select * FROM mathformulas";
+            String query = "Select * FROM mathformulas ORDER BY name ASC";
             ResultSet rs = connection.createStatement().executeQuery(query);
             
             while (rs.next()) {
