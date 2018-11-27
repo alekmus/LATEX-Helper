@@ -2,7 +2,6 @@ package helper.ui;
 
 import java.util.Arrays;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -18,18 +17,25 @@ import helper.domain.ParserCollection;
 import helper.domain.QuoteParser;
 import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Priority;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
         
 /**
  *
@@ -37,7 +43,7 @@ import javafx.scene.layout.Priority;
  */
 public class HelperUI extends Application{
     private LTXCodeDoc lcd;
-    private MathDao mado; 
+    private MathDao madao; 
     private ArrayList<String> nots;
     
     @Override
@@ -59,8 +65,8 @@ public class HelperUI extends Application{
         ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         //Initialize the database class and store saved LATEX-notations to nots
-        this.mado = new MathDao("src/main/resources/helper.db");
-        this.nots = mado.notations();
+        this.madao = new MathDao("src/main/resources/helper.db");
+        this.nots = madao.notations();
         
         //Initalize the target code document
         this.lcd = new LTXCodeDoc(head, pc, titlePage);
@@ -72,88 +78,73 @@ public class HelperUI extends Application{
         window.setTitle("LaTeX Helper");
         window.setHeight(500);
         window.setWidth(1000);
+        
         BorderPane layout = new BorderPane();
         
-        TextField title = new TextField();
-        title.setPromptText("Title of your document");
         
+        //Middle text area and formula helper
         TextArea txt = new TextArea();
-        txt.setWrapText(true);       
+        txt.setWrapText(true);
+        txt.setPrefHeight(Integer.MAX_VALUE);
         
         HBox mathModeSearch = new HBox();
-        
+        mathModeSearch.setSpacing(5);
         ComboBox<String> searchbar = new ComboBox();
+        searchbar.setPromptText("--Select Formula--");
         searchbar.getItems().addAll(nots);
+        
         TextField searchresult = new TextField();
+        
+        Button render = new Button("Preview");
+        
+        ImageView formula = new ImageView();
+        BorderPane imgPane = new BorderPane();
+        imgPane.setMinHeight(50);
+        imgPane.setCenter(formula);
+        
+        render.setOnAction((e)->{
+            TeXFormula tex = new TeXFormula(searchresult.getText());
+            java.awt.Image im = tex.createBufferedImage(TeXConstants.STYLE_TEXT, 
+                                           28,
+                                           java.awt.Color.BLACK,
+                                           null);
+            WritableImage fxim = SwingFXUtils.toFXImage((BufferedImage) im,
+                                                        null);
+            formula.setImage(fxim);
+            
+        });
         
         searchbar.valueProperty().addListener((obs,o,n)->{
             try{
-                searchresult.setText("$$"+this.mado.find(n)+"$$");
+                searchresult.setText(this.madao.find(n));
+                formula.setImage(null);
             }catch(Exception e){
                 searchresult.setText("Problem with database connection");
             }
         });
         
-        mathModeSearch.getChildren().addAll(searchbar,searchresult);
+        mathModeSearch.getChildren().addAll(searchbar, searchresult, render);
         mathModeSearch.setPadding(new Insets(5,0,5,0));
         mathModeSearch.setAlignment(Pos.CENTER);
         
         VBox midBox = new VBox();
-        midBox.setPadding(new Insets(0,5,5,5));
-        midBox.getChildren().addAll(title,txt,mathModeSearch);
-                
+        midBox.setPadding(new Insets(0,5,10,5));
+        midBox.getChildren().addAll(txt, mathModeSearch, imgPane);
+        midBox.setPrefWidth(Integer.MAX_VALUE);
+        
+        
+        //Text target on the right side
         TextArea txtTarget = new TextArea();
         txtTarget.setPrefHeight(Integer.MAX_VALUE);
         txtTarget.setWrapText(true);
         txtTarget.setEditable(false);
         
-        
         VBox rightBox = new VBox();
         rightBox.getChildren().add(txtTarget);
-        rightBox.setPadding(new Insets(0,5,5,0));
-        VBox.setVgrow(rightBox, Priority.ALWAYS);
-                
+        rightBox.setPadding(new Insets(0,10,10,0));
+        rightBox.setPrefWidth(Integer.MAX_VALUE);   
         
-        
-        Menu file = new Menu("File");
-        MenuItem saveItem = new MenuItem("Save");
-        MenuItem exitItem = new MenuItem("Exit");
-
-        file.getItems().add(saveItem);
-        file.getItems().add(exitItem);
-        
-        MenuBar menubar = new MenuBar(file);
-        layout.setTop(menubar);
-        
-        VBox sideOptions = new VBox();
-        sideOptions.setPadding(new Insets(0,5,5,5));
-        sideOptions.setMinWidth(100.0);
-        sideOptions.setMaxWidth(100.0);
-        sideOptions.setFillWidth(true);
-        
-        MenuButton font = new MenuButton("Font");
-        font.setPrefWidth(Double.MAX_VALUE);
-        font.setPopupSide(Side.BOTTOM);
-        MenuItem fontprop = new MenuItem("Font");
-        font.getItems().add(fontprop);
-        MenuButton setup = new MenuButton("Set up");
-        setup.setPrefWidth(Double.MAX_VALUE);
-        
-        
-        sideOptions.getChildren().addAll(setup,font);
-                
-        HBox fields = new HBox();
-        fields.getChildren().addAll(sideOptions, midBox, rightBox);
-        
-        layout.setCenter(fields);        
-        
-        txtTarget.setText(lcd.toString());
-        
-        title.textProperty().addListener((obs,o,n)->{
-            lcd.setTitle(n);
-            txtTarget.setText(lcd.toString());
-        });
-                
+        txtTarget.setText(lcd.toString());         
         txt.textProperty().addListener((obs,o,n)-> {
             lcd.setText(n);
             lcd.parse();
@@ -161,6 +152,91 @@ public class HelperUI extends Application{
             txtTarget.setText(lcd.toString());
             txtTarget.setScrollTop(pos);
         });
+        
+        
+        // Options on the left
+        VBox leftBox = new VBox();
+        
+        leftBox.setPadding(new Insets(0,0,10,0));
+        leftBox.setMinWidth(200);
+        
+        TitledPane titleoptions = new TitledPane();
+        titleoptions.setText("Title");
+        titleoptions.setExpanded(false);
+        
+        VBox titlesetup = new VBox();
+        
+        TextField title = new TextField();
+        Label titlelabel = new Label("Title");
+        titlelabel.setPrefWidth(100);
+        HBox titlebox = new HBox(titlelabel,title);
+        titlebox.setSpacing(5);
+        
+        title.textProperty().addListener((obs,o,n)->{
+            lcd.setTitle(n);
+            txtTarget.setText(lcd.toString());
+        });
+                
+        TextField author = new TextField();
+        Label authorlabel = new Label("Author");
+        authorlabel.setPrefWidth(100);
+        HBox authorbox = new HBox(authorlabel,author);   
+        authorbox.setSpacing(5);
+        
+        author.textProperty().addListener((obs,o,n)->{
+            lcd.setAuthor(n);
+            txtTarget.setText(lcd.toString());
+        });
+        
+        titlesetup.getChildren().addAll(titlebox, authorbox);     
+        titleoptions.setContent(titlesetup);
+        
+        TitledPane fontoptions = new TitledPane();
+        fontoptions.setText("Font");
+        fontoptions.setExpanded(false);
+        
+        VBox fontsetup = new VBox();
+        
+        ComboBox<String> font = new ComboBox();
+        Label fontlabel = new Label("Font");
+        fontlabel.setPrefWidth(100);
+        HBox fontbox = new HBox(fontlabel,font);
+        titlebox.setSpacing(5);
+        
+        ComboBox<String> fontsize = new ComboBox();
+        Label fontsizelabel = new Label("Font size");
+        fontsizelabel.setPrefWidth(100);
+        HBox fontsizebox = new HBox(fontsizelabel, fontsize);
+        titlebox.setSpacing(5);
+        
+        fontsetup.getChildren().addAll(fontbox,fontsizebox);
+        
+        fontoptions.setContent(fontsetup);
+        
+        leftBox.getChildren().addAll(titleoptions,fontoptions);
+        
+        
+        // General layout
+        HBox fields = new HBox();
+        fields.getChildren().addAll(leftBox, midBox, rightBox);
+        layout.setCenter(fields);        
+        
+        
+        // menubar
+        Menu file = new Menu("File");
+        MenuItem saveItem = new MenuItem("Save");
+        MenuItem exitItem = new MenuItem("Exit");
+        
+        file.getItems().add(saveItem);
+        file.getItems().add(exitItem);
+        
+        exitItem.setOnAction((e)->{
+            System.exit(0);
+        });
+        
+        MenuBar menubar = new MenuBar(file);
+        layout.setTop(menubar);
+        
         
         Scene scene = new Scene(layout);
         txt.requestFocus();
