@@ -13,7 +13,7 @@ import java.util.*;
  * @author Aleksi
  */
 
-public class MathDao implements Dao{
+public class MathDao implements Dao {
     private String dbloc;
     
     
@@ -22,15 +22,15 @@ public class MathDao implements Dao{
     }
     
     @Override
-    public String find(String str){
+    public String find(String str) {
         try {
             Class.forName("org.sqlite.JDBC");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         String result = "";
         
-        try{
+        try {
             Connection connection = DriverManager.getConnection(this.dbloc);
             
             
@@ -42,7 +42,7 @@ public class MathDao implements Dao{
             while (rs.next()) {
                 result += rs.getString("formula");
             } 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return result;

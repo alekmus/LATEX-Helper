@@ -19,6 +19,9 @@ import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,14 +29,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.Priority;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
         
@@ -116,7 +120,7 @@ public class HelperUI extends Application{
         
         searchbar.valueProperty().addListener((obs,o,n)->{
             try{
-                searchresult.setText(this.madao.find(n));
+                searchresult.setText("$"+this.madao.find(n)+"$");
                 formula.setImage(null);
             }catch(Exception e){
                 searchresult.setText("Problem with database connection");
@@ -160,6 +164,61 @@ public class HelperUI extends Application{
         leftBox.setPadding(new Insets(0,0,10,0));
         leftBox.setMinWidth(200);
         
+        TitledPane setupoptions = new TitledPane();
+        setupoptions.setText("Set up");
+        setupoptions.setExpanded(false);
+        
+        VBox setupsetup = new VBox();
+        
+        ListView packs = new ListView();
+        packs.setCellFactory(CheckBoxListCell.forListView((String item) -> {
+            BooleanProperty obsvable = new SimpleBooleanProperty();
+            return obsvable ;
+        }));
+        
+        Label packlabel = new Label("Add package:");
+        HBox packoptions = new HBox();
+        TextField pack = new TextField();
+        pack.setPromptText("Package name");
+        TextField packdetails = new TextField();
+        packdetails.setPromptText("Options");
+        
+        HBox packbuttons = new HBox();
+        
+        Button addpack = new Button("Add");
+        addpack.setOnAction((e)->{
+            if (!pack.getText().isEmpty()) {
+                
+                String packStr = pack.getText();
+                if (!packdetails.getText().isEmpty()){
+                    String detStr = packdetails.getText();
+                    packs.getItems().add(("\\usepackage["
+                            + detStr
+                            + "]{"
+                            + packStr
+                            + "}"));
+                } else {
+                    packs.getItems().add("\\usepackage{"+ packStr + "}");
+                }
+            }
+        });
+        
+        Button removepack = new Button("Remove selected");
+        removepack.setOnAction((e)->{
+            //remove packs from listView
+        });
+        
+        packbuttons.getChildren().addAll(addpack,removepack);
+                
+        packoptions.getChildren().addAll(pack,packdetails);        
+        setupsetup.getChildren().addAll(new Label("Packages:"),
+                packs,
+                packlabel,
+                packoptions,
+                packbuttons);
+        
+        setupoptions.setContent(setupsetup);
+        
         TitledPane titleoptions = new TitledPane();
         titleoptions.setText("Title");
         titleoptions.setExpanded(false);
@@ -197,13 +256,20 @@ public class HelperUI extends Application{
         
         VBox fontsetup = new VBox();
         
-        ComboBox<String> font = new ComboBox();
+        ComboBox<String> font = new ComboBox();        
+        
         Label fontlabel = new Label("Font");
         fontlabel.setPrefWidth(100);
         HBox fontbox = new HBox(fontlabel,font);
         titlebox.setSpacing(5);
         
         ComboBox<String> fontsize = new ComboBox();
+        
+        for (int i = 1; i < 81; i++){
+            fontsize.getItems().add(String.valueOf(i)+"pt");
+        }
+        fontsize.getSelectionModel().select("12pt");
+        
         Label fontsizelabel = new Label("Font size");
         fontsizelabel.setPrefWidth(100);
         HBox fontsizebox = new HBox(fontsizelabel, fontsize);
@@ -213,7 +279,7 @@ public class HelperUI extends Application{
         
         fontoptions.setContent(fontsetup);
         
-        leftBox.getChildren().addAll(titleoptions,fontoptions);
+        leftBox.getChildren().addAll(setupoptions,titleoptions,fontoptions);
         
         
         // General layout
