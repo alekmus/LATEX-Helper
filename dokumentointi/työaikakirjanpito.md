@@ -5,6 +5,7 @@
 |19.11|8|Rakennemuutoksia ohjelmaan, uuden parseriluokan kirjoitus,gui-säätöä, lineparser ja paragraphparser toimintaan+bugeja|
 |20.11|8|Sitaattiparseri, gui:ia ja titlepage|
 |25.11|8|Tietokantayhteys ja init gui:in|
-|27.11|8|pakkauskaavio, dao, latex-render ja asetukset|
+|27.11|8|Pakkauskaavio, dao, latex-render ja asetukset|
+|29.11|2|pdf-export| 
 
-Yhteensä: 45h
+Yhteensä: 47h
