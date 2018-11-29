@@ -77,7 +77,7 @@ public class LTXTitlePage {
         
         str += this.opens;
         str += this.title;
-        str += "\\\\\n [\\baselineskip]\n";
+        str += "\n [\\baselineskip]\n";
         str += this.author + "\n";
         str += this.closes;        
         str += "\\pagebreak\n";

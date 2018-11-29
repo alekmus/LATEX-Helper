@@ -1,6 +1,6 @@
 package helper.domain;
 
-import helper.domain.ParserCollection;
+import java.util.ArrayList;
 
 public class LTXCodeDoc {
     private Header header;
@@ -21,7 +21,6 @@ public class LTXCodeDoc {
         this.doc = "";
     }
     
-    
     public void setText(String replacement) {
         this.doc = replacement;
     }
@@ -34,6 +33,10 @@ public class LTXCodeDoc {
         return this.doc;
     }
     
+    public String getTitle() {
+        return this.header.getTitle();
+    }
+    
     public void setTitle(String repl) {
         this.header.setTitle(repl);
         titlePage.setTitle(repl);
@@ -41,6 +44,22 @@ public class LTXCodeDoc {
     
     public void setAuthor(String repl) {
         titlePage.setAuthor(repl);
+    }
+    
+    public void addPackage(String pack){
+        this.header.addToPackages(pack);
+    }
+    
+    public void removePackage(String pack){
+        this.header.removePackage(pack);
+    }
+    
+    public ArrayList getPackages(){
+        return this.header.getPackages();
+    }
+    
+    public void setFontSize(String str) {
+        this.header.setFontSize(str);
     }
     
     @Override

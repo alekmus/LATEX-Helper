@@ -12,6 +12,7 @@ import helper.domain.LTXCodeDoc;
 import helper.domain.LTXTitlePage;
 import helper.domain.LineParser;
 import helper.dao.MathDao;
+import helper.domain.DocExporter;
 import helper.domain.ParagraphParser;
 import helper.domain.ParserCollection;
 import helper.domain.QuoteParser;
@@ -19,10 +20,10 @@ import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -48,15 +49,20 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 public class HelperUI extends Application{
     private LTXCodeDoc lcd;
     private MathDao madao; 
+    private DocExporter de;
     private ArrayList<String> nots;
+    private ArrayList<String> rempacks;
+    
     
     @Override
     public void init() throws Exception{
         //Initalize the header and titlepage
-        Header head = new Header(
-                Arrays.asList("\\documentclass[a4paper,12pt]{article}",
-                        "\\usepackage[utf8]{inputenc}",
-                        "\\usepackage[Finnish]{babel}" ));
+        this.rempacks = new ArrayList<>();
+        this.de = new DocExporter();
+        Header head = new Header();
+        head.addToPackages("\\usepackage[utf8]{inputenc}");
+        head.addToPackages("\\usepackage[Finnish]{babel}");
+        
         LTXTitlePage titlePage = new LTXTitlePage();
 
         
@@ -173,8 +179,16 @@ public class HelperUI extends Application{
         ListView packs = new ListView();
         packs.setCellFactory(CheckBoxListCell.forListView((String item) -> {
             BooleanProperty obsvable = new SimpleBooleanProperty();
+            obsvable.addListener((obs, o, n) -> {
+                if (n) {
+                    rempacks.add(item);
+                } else {
+                    rempacks.remove(item);
+                }
+            });
             return obsvable ;
-        }));
+        }));        
+        packs.getItems().setAll(lcd.getPackages());
         
         Label packlabel = new Label("Add package:");
         HBox packoptions = new HBox();
@@ -188,24 +202,30 @@ public class HelperUI extends Application{
         Button addpack = new Button("Add");
         addpack.setOnAction((e)->{
             if (!pack.getText().isEmpty()) {
-                
                 String packStr = pack.getText();
-                if (!packdetails.getText().isEmpty()){
+                if (!packdetails.getText().isEmpty()) {
                     String detStr = packdetails.getText();
-                    packs.getItems().add(("\\usepackage["
+                    lcd.addPackage(("\\usepackage["
                             + detStr
                             + "]{"
                             + packStr
                             + "}"));
                 } else {
-                    packs.getItems().add("\\usepackage{"+ packStr + "}");
+                    lcd.addPackage("\\usepackage{"+ packStr + "}");
                 }
+                packs.getItems().setAll(lcd.getPackages());
+                txtTarget.setText(lcd.toString());
             }
         });
         
         Button removepack = new Button("Remove selected");
         removepack.setOnAction((e)->{
-            //remove packs from listView
+            for (String rem : rempacks){
+                lcd.removePackage(rem);
+                packs.getItems().setAll(lcd.getPackages());
+            }
+            txtTarget.setText(lcd.toString());
+            
         });
         
         packbuttons.getChildren().addAll(addpack,removepack);
@@ -269,6 +289,13 @@ public class HelperUI extends Application{
             fontsize.getItems().add(String.valueOf(i)+"pt");
         }
         fontsize.getSelectionModel().select("12pt");
+        fontsize.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, o, n) -> {
+            lcd.setFontSize(n);
+            txtTarget.setText(lcd.toString());
+        });
+        
         
         Label fontsizelabel = new Label("Font size");
         fontsizelabel.setPrefWidth(100);
@@ -291,14 +318,30 @@ public class HelperUI extends Application{
         // menubar
         Menu file = new Menu("File");
         MenuItem saveItem = new MenuItem("Save");
+        saveItem.setOnAction((e) -> {
+            de.save(txt.getText(), lcd.getTitle());
+        });
+        
+        Menu export = new Menu("Export");
+        MenuItem toPDF = new MenuItem("to PDF");
+        MenuItem toTex = new MenuItem("to Tex");
+        export.getItems().addAll(toPDF, toTex);
+        
+        toPDF.setOnAction((e) -> {
+            de.exportToPDF(txtTarget.getText(), lcd.getTitle());
+        });
+        
+        toTex.setOnAction((e) -> {
+            de.exportToTeX(txtTarget.getText(), lcd.getTitle());
+        });
+        
         MenuItem exitItem = new MenuItem("Exit");
-        
-        file.getItems().add(saveItem);
-        file.getItems().add(exitItem);
-        
         exitItem.setOnAction((e)->{
             System.exit(0);
         });
+        
+        file.getItems().addAll(saveItem, export, exitItem);
+        
         
         MenuBar menubar = new MenuBar(file);
         layout.setTop(menubar);

@@ -1,15 +1,22 @@
 package helper.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Header {
-    private List header;
+    private ArrayList<String> classdets;
+    private String fontSize;
+    private String classtype;
+    private ArrayList<String> packages;
     private String doctype;
     private String title;
     
-    public Header(List<String> packages) {
-        this.header = packages.stream().collect(Collectors.toList());
+    public Header() {
+        this.classdets = new ArrayList();
+        this.classdets.add("a4paper");
+        this.fontSize = "12pt";
+        this.classtype = "article";
+        this.packages = new ArrayList();
         this.doctype = "document";
         this.title = "";
     }    
@@ -22,25 +29,41 @@ public class Header {
         return this.title;
     }
     
-    public void setHeader(List repl) {
-        this.header = repl;
-    }    
+    public void setPackages(ArrayList<String> repl) {
+        this.packages = repl;
+    }
+
+    public void addToPackages(String pack){
+        this.packages.add(pack);
+    }
     
-    public List getHeader() {
-        return this.header;
+    public void removePackage(String pack){
+        this.packages.remove(pack);
+    }
+    
+    public ArrayList getPackages() {
+        return this.packages;
     }    
     
     public void add(String s) {
-        this.header.add(s);
+        this.packages.add(s);
+    }
+    
+    public void setFontSize(String str) {
+        this.fontSize = str;
     }
     
     @Override
     public String toString() {
-        String string = "";
-        
-        for (Object temp : header) {
-            string += (String) temp + "\n";
+        String string = "\\documentclass[";
+        for (String temp: this.classdets) {
+            string += temp + ", ";
+        }    
+        string += this.fontSize + "]{" + this.classtype + "}\n";
+        for (String temp : this.packages) {
+            string += temp + "\n";
         }
+        
         string += "\n\\title{" + this.title + "}\n\n";
         return string;
     }
