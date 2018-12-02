@@ -328,7 +328,22 @@ public class HelperUI extends Application{
         export.getItems().addAll(toPDF, toTex);
         
         toPDF.setOnAction((e) -> {
-            de.exportToPDF(txtTarget.getText(), lcd.getTitle());
+            boolean b = de.exportToPDF(txtTarget.getText(), lcd.getTitle());
+            if (!de.exportToPDF(txtTarget.getText(), lcd.getTitle())){
+                Stage errorstage = new Stage();
+                errorstage.setTitle("Export error");
+                TextArea errorArea = new TextArea();
+                errorArea.setText("This program uses the LaTEX distribution "
+                        + "to convert tex-files into pdf-files.\n"
+                        + "Please make sure you have LaTEX installed before "
+                        + "trying again to export the file.");
+                errorArea.setWrapText(true);
+                errorArea.setPrefSize(400, 100);
+                errorArea.setEditable(false);
+                Scene errorScene = new Scene(errorArea);
+                errorstage.setScene(errorScene);
+                errorstage.show();
+            }
         });
         
         toTex.setOnAction((e) -> {

@@ -21,23 +21,44 @@ public class DocExporter {
         }  
     }
     
-    public void exportToTeX(String doc, String filename) {
+    public boolean exportToTeX(String doc, String filename) {
         try (FileWriter fw = new FileWriter(new File(filename +".tex"))) {
             fw.write(doc);
         } catch (Exception e){
             System.out.println(e);
+            return false;
         }  
+        return true;
     }
     
     
-    public void exportToPDF(String doc, String filename) {
-        try (FileWriter fw = new FileWriter(new File(filename + ".tex"))) {
+    public boolean exportToPDF(String doc, String filename) {
+        try (FileWriter fw = new FileWriter(
+                new File("src/main/resources/saved/" + filename + ".tex"))) {
         fw.write(doc);
+            
         
         Runtime run = Runtime.getRuntime();
-        Process pro = run.exec("pdflatex" + filename + ".tex");
+        
+        Process pro = new ProcessBuilder("pdflatex").start(); 
+                //run.exec("pdflatex");
+        
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(pro.getInputStream()));
+        
+        if (br.readLine() == null) {
+            return false;
+        }
+        pro = new ProcessBuilder("pdflatex",
+                filename,
+                ".tex src/main/resources")
+                .directory(new File("src/main/resources/saved"))
+                .start();
+ //       run.exec("pdflatex " + filename + ".tex src/main/resources");
         } catch (Exception e){
-            System.out.println(e);
+            return false;
         }      
+        
+        return true;
     }
 }

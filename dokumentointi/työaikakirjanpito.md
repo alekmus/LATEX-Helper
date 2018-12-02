@@ -6,6 +6,6 @@
 |20.11|8|Sitaattiparseri, gui:ia ja titlepage|
 |25.11|8|Tietokantayhteys ja init gui:in|
 |27.11|8|Pakkauskaavio, dao, latex-render ja asetukset|
-|29.11|2|pdf-export| 
-
+|29.11|2|pdf-export|
+|2.12|2|exportteja|
 Yhteensä: 47h
