@@ -1,8 +1,9 @@
 package helper.domain;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SectionParser implements MacroParser {
+public class SectionParser implements MacroParser, Serializable {
     private final int titleLength = 30;
     private String sectionStyle;
     

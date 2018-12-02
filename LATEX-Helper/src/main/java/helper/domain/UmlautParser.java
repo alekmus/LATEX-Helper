@@ -5,13 +5,14 @@
  */
 package helper.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author Aleksi
  */
-public class UmlautParser implements MicroParser {
+public class UmlautParser implements MicroParser, Serializable {
     private HashMap<String, String> chars;
     
     public UmlautParser() {

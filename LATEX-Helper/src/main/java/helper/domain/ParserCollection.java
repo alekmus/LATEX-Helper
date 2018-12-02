@@ -5,15 +5,15 @@
  */
 package helper.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  *
  * @author Aleksi
  */
-public class ParserCollection {
+public class ParserCollection implements Serializable{
     private final List<MicroParser> microparsers;    
     private final List<MacroParser> macroparsers;
     

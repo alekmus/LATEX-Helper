@@ -1,10 +1,12 @@
 package helper.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LTXCodeDoc {
+public class LTXCodeDoc implements Serializable{
     private Header header;
     private String doc;
+    private String text;
     private ParserCollection pc;
     private LTXTitlePage titlePage;
     
@@ -13,6 +15,7 @@ public class LTXCodeDoc {
         this.header = header;
         this.doc = "";
         this.titlePage = ltp; 
+        this.text = "";
     }
     
     public LTXCodeDoc(Header header, ParserCollection pc) {
@@ -21,20 +24,36 @@ public class LTXCodeDoc {
         this.doc = "";
     }
     
-    public void setText(String replacement) {
+    public void setDoc(String replacement) {
         this.doc = replacement;
+    }
+    
+    public void setText(String replacement) {
+        this.text = replacement;
     }
     
     public void parse() {
         this.doc = pc.parseDoc(doc);
     }
     
-    public String getText() {
+    public String getDoc() {
         return this.doc;
     }
     
     public String getTitle() {
         return this.header.getTitle();
+    }
+    
+    public String getText(){
+        return this.text;
+    }
+    
+    public Header getHeader(){
+        return this.header;
+    }
+    
+    public LTXTitlePage getTitlePage(){
+        return this.titlePage;
     }
     
     public void setTitle(String repl) {
@@ -68,9 +87,12 @@ public class LTXCodeDoc {
         
         str +=  "\\begin{"
                 + this.header.getDoctype()
-                + "}\n"
-                + titlePage
-                + doc
+                + "}\n";
+        if (this.titlePage != null) {
+            str += this.titlePage;
+        }
+        
+        str += doc
                 + "\n\\end{"
                 + this.header.getDoctype() + "}";
         return str;

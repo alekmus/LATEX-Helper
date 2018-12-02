@@ -5,6 +5,7 @@
  */
 package helper.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import java.util.Arrays;
  *
  * @author Aleksi
  */
-public class QuoteParser implements MicroParser {
+public class QuoteParser implements MicroParser, Serializable {
    
     @Override
     public String parse(String str) {

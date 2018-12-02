@@ -1,8 +1,9 @@
 package helper.domain;
+import java.io.Serializable;
 import java.util.regex.Pattern; 
 import java.util.regex.Matcher;
 
-public class ParagraphParser implements MicroParser {
+public class ParagraphParser implements MicroParser, Serializable {
     
     @Override
     public String parse(String str) {

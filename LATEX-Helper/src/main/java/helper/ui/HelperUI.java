@@ -1,6 +1,5 @@
 package helper.ui;
 
-import java.util.Arrays;
 import javafx.application.Application;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
@@ -19,11 +18,11 @@ import helper.domain.QuoteParser;
 import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -39,6 +38,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
         
@@ -156,6 +158,7 @@ public class HelperUI extends Application{
         
         txtTarget.setText(lcd.toString());         
         txt.textProperty().addListener((obs,o,n)-> {
+            lcd.setDoc(n);
             lcd.setText(n);
             lcd.parse();
             double pos = txtTarget.getScrollTop();
@@ -317,9 +320,27 @@ public class HelperUI extends Application{
         
         // menubar
         Menu file = new Menu("File");
+        MenuItem openItem = new MenuItem("Open");
+        openItem.setOnAction((e) -> {
+            FileChooser openChooser = new FileChooser();
+            File openFile = openChooser.showOpenDialog(window);
+            LTXCodeDoc openedDoc = de.open(openFile);
+            if (openedDoc != null) {
+                lcd = openedDoc;
+                fontsize.getSelectionModel()
+                        .select(lcd.getHeader().getFontSize());
+                author.setText(lcd.getTitlePage().getAuthor());
+                title.setText(lcd.getTitlePage().getTitle());
+                txt.setText(lcd.getText());
+                packs.getItems().setAll(lcd.getPackages());
+            }
+        });
+        
         MenuItem saveItem = new MenuItem("Save");
         saveItem.setOnAction((e) -> {
-            de.save(txt.getText(), lcd.getTitle());
+            FileChooser saveChooser = new FileChooser();
+            File saveFile = saveChooser.showSaveDialog(window);
+            de.save(lcd, saveFile);
         });
         
         Menu export = new Menu("Export");
@@ -328,26 +349,37 @@ public class HelperUI extends Application{
         export.getItems().addAll(toPDF, toTex);
         
         toPDF.setOnAction((e) -> {
-            boolean b = de.exportToPDF(txtTarget.getText(), lcd.getTitle());
-            if (!de.exportToPDF(txtTarget.getText(), lcd.getTitle())){
-                Stage errorstage = new Stage();
-                errorstage.setTitle("Export error");
-                TextArea errorArea = new TextArea();
-                errorArea.setText("This program uses the LaTEX distribution "
-                        + "to convert tex-files into pdf-files.\n"
-                        + "Please make sure you have LaTEX installed before "
-                        + "trying again to export the file.");
-                errorArea.setWrapText(true);
-                errorArea.setPrefSize(400, 100);
-                errorArea.setEditable(false);
-                Scene errorScene = new Scene(errorArea);
-                errorstage.setScene(errorScene);
-                errorstage.show();
-            }
+            DirectoryChooser pdfChooser = new DirectoryChooser();
+            pdfChooser.setTitle("Export to");
+            File dir = pdfChooser.showDialog(window);
+            if (dir != null) {
+                String dirpath = dir.getAbsolutePath() + "\\";
+                if (!de.exportToPDF(txtTarget.getText(), lcd.getTitle(),dirpath)){
+                    Stage errorstage = new Stage();
+                    errorstage.setTitle("Export error");
+                    TextArea errorArea = new TextArea();
+                    errorArea.setText("This program uses the LaTEX distribution "
+                            + "to convert tex-files into pdf-files.\n"
+                            + "Please make sure you have LaTEX installed before "
+                            + "trying again to export the file.");
+                    errorArea.setWrapText(true);
+                    errorArea.setPrefSize(400, 100);
+                    errorArea.setEditable(false);
+                    Scene errorScene = new Scene(errorArea);
+                    errorstage.setScene(errorScene);
+                    errorstage.show();
+                }
+            }    
         });
         
         toTex.setOnAction((e) -> {
-            de.exportToTeX(txtTarget.getText(), lcd.getTitle());
+            FileChooser texChooser = new FileChooser();
+            texChooser.getExtensionFilters().add(
+                    new ExtensionFilter(".tex","*.tex"));
+            File texfile = texChooser.showSaveDialog(window);
+            if (texfile != null) {
+                de.exportToTeX(txtTarget.getText(), texfile);
+            }
         });
         
         MenuItem exitItem = new MenuItem("Exit");
@@ -355,7 +387,7 @@ public class HelperUI extends Application{
             System.exit(0);
         });
         
-        file.getItems().addAll(saveItem, export, exitItem);
+        file.getItems().addAll(openItem, saveItem, export, exitItem);
         
         
         MenuBar menubar = new MenuBar(file);

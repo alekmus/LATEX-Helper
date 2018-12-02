@@ -12,17 +12,34 @@ import java.io.*;
  */
 public class DocExporter {
     
-    public void save(String doc, String filename) {
-        try (FileWriter fw = new FileWriter(new File(filename +".txt"))) {
-            fw.write(doc);
+    public void save(LTXCodeDoc lcd, File file) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(file);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(lcd);
+            objOut.close();
             
         } catch (Exception e){
             System.out.println(e);
         }  
     }
     
-    public boolean exportToTeX(String doc, String filename) {
-        try (FileWriter fw = new FileWriter(new File(filename +".tex"))) {
+    public LTXCodeDoc open(File file) {
+        try {
+            FileInputStream fileIn = new FileInputStream(file);
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            Object ob = objIn.readObject();
+            if (ob.getClass().getSimpleName().equals("LTXCodeDoc")) {
+                return (LTXCodeDoc) ob;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public boolean exportToTeX(String doc, File file) {
+        try (FileWriter fw = new FileWriter(file)){
             fw.write(doc);
         } catch (Exception e){
             System.out.println(e);
@@ -32,9 +49,9 @@ public class DocExporter {
     }
     
     
-    public boolean exportToPDF(String doc, String filename) {
+    public boolean exportToPDF(String doc, String filename, String directory) {
         try (FileWriter fw = new FileWriter(
-                new File("src/main/resources/saved/" + filename + ".tex"))) {
+                new File(directory + filename + ".tex"))) {
         fw.write(doc);
             
         
@@ -51,8 +68,8 @@ public class DocExporter {
         }
         pro = new ProcessBuilder("pdflatex",
                 filename,
-                ".tex src/main/resources")
-                .directory(new File("src/main/resources/saved"))
+                ".tex")
+                .directory(new File(directory))
                 .start();
  //       run.exec("pdflatex " + filename + ".tex src/main/resources");
         } catch (Exception e){

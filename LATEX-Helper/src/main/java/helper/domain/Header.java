@@ -1,9 +1,9 @@
 package helper.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Header {
+public class Header implements Serializable{
     private ArrayList<String> classdets;
     private String fontSize;
     private String classtype;
@@ -27,6 +27,14 @@ public class Header {
     
     public String getTitle() {
         return this.title;
+    }
+    
+    public String getFontSize(){
+        return this.fontSize;
+    }
+    
+    public String getClassType(){
+        return this.classtype;
     }
     
     public void setPackages(ArrayList<String> repl) {
