@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author Aleksi
  */
-public class QuoteParser implements MicroParser, Serializable {
+public class QuoteParser implements MicroParser {
    
     @Override
     public String parse(String str) {

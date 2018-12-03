@@ -5,7 +5,6 @@
  */
 package helper.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,7 +12,7 @@ import java.util.Arrays;
  *
  * @author Aleksi
  */
-public class LineParser implements MacroParser, Serializable {
+public class LineParser implements MacroParser {
     
     public ArrayList<String> parse(String str) {
         ArrayList<String> parts = new ArrayList(

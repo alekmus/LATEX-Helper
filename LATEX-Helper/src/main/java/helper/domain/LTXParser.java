@@ -1,5 +1,7 @@
 package helper.domain;
 
-public interface LTXParser<T> {
+import java.io.Serializable;
+
+public interface LTXParser<T> extends Serializable{
     public T parse(String string);
 }

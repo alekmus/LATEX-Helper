@@ -403,6 +403,7 @@ public class HelperUI extends Application{
     @Override
     public void stop(){
         System.out.println("Sovellus suljettu");
+       
     }
     
     public static void main(String[] args){

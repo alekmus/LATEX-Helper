@@ -18,7 +18,7 @@ public class MathDao implements Dao {
     
     
     public MathDao(String databaselocation) {
-        this.dbloc = "jdbc:sqlite:" + databaselocation;
+        this.dbloc = "jdbc:sqlite::resource:helper.db";
     }
     
     @Override

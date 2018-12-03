@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SectionParser implements MacroParser, Serializable {
+public class SectionParser implements MacroParser {
     private final int titleLength = 30;
     private String sectionStyle;
     
