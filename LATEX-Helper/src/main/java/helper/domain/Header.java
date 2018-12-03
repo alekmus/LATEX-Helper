@@ -3,7 +3,7 @@ package helper.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Header implements Serializable{
+public class Header implements Serializable {
     private ArrayList<String> classdets;
     private String fontSize;
     private String classtype;
@@ -29,11 +29,11 @@ public class Header implements Serializable{
         return this.title;
     }
     
-    public String getFontSize(){
+    public String getFontSize() {
         return this.fontSize;
     }
     
-    public String getClassType(){
+    public String getClassType() {
         return this.classtype;
     }
     
@@ -41,11 +41,11 @@ public class Header implements Serializable{
         this.packages = repl;
     }
 
-    public void addToPackages(String pack){
+    public void addToPackages(String pack) {
         this.packages.add(pack);
     }
     
-    public void removePackage(String pack){
+    public void removePackage(String pack) {
         this.packages.remove(pack);
     }
     

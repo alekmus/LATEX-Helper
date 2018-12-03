@@ -21,12 +21,11 @@ public class MathDao implements Dao {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e) {
-            System.out.println(e);
+            
         }
         String result = "";
-        
         try (Connection connection = DriverManager
-                    .getConnection("jdbc:sqlite::resource:helper.db")){
+                    .getConnection("jdbc:sqlite::resource:helper.db")) {
             String query = "Select * FROM mathformulas WHERE name = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, str);

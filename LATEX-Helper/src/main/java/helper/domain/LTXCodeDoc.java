@@ -3,7 +3,7 @@ package helper.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LTXCodeDoc implements Serializable{
+public class LTXCodeDoc implements Serializable {
     private Header header;
     private String doc;
     private String text;
@@ -44,15 +44,15 @@ public class LTXCodeDoc implements Serializable{
         return this.header.getTitle();
     }
     
-    public String getText(){
+    public String getText() {
         return this.text;
     }
     
-    public Header getHeader(){
+    public Header getHeader() {
         return this.header;
     }
     
-    public LTXTitlePage getTitlePage(){
+    public LTXTitlePage getTitlePage() {
         return this.titlePage;
     }
     
@@ -65,15 +65,15 @@ public class LTXCodeDoc implements Serializable{
         titlePage.setAuthor(repl);
     }
     
-    public void addPackage(String pack){
+    public void addPackage(String pack) {
         this.header.addToPackages(pack);
     }
     
-    public void removePackage(String pack){
+    public void removePackage(String pack) {
         this.header.removePackage(pack);
     }
     
-    public ArrayList getPackages(){
+    public ArrayList getPackages() {
         return this.header.getPackages();
     }
     

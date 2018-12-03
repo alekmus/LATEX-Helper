@@ -19,7 +19,7 @@ public class DocExporter {
             objOut.writeObject(lcd);
             objOut.close();
             
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }  
     }
@@ -39,9 +39,9 @@ public class DocExporter {
     }
     
     public boolean exportToTeX(String doc, File file) {
-        try (FileWriter fw = new FileWriter(file)){
+        try (FileWriter fw = new FileWriter(file)) {
             fw.write(doc);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }  
@@ -52,30 +52,22 @@ public class DocExporter {
     public boolean exportToPDF(String doc, String filename, String directory) {
         try (FileWriter fw = new FileWriter(
                 new File(directory + filename + ".tex"))) {
-        fw.write(doc);
+            fw.write(doc);
             
+            Runtime run = Runtime.getRuntime();        
+            Process pro = new ProcessBuilder("pdflatex").start(); 
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(pro.getInputStream()));
         
-        Runtime run = Runtime.getRuntime();
-        
-        Process pro = new ProcessBuilder("pdflatex").start(); 
-                //run.exec("pdflatex");
-        
-        BufferedReader br = new BufferedReader(
-                new InputStreamReader(pro.getInputStream()));
-        
-        if (br.readLine() == null) {
-            return false;
-        }
-        pro = new ProcessBuilder("pdflatex",
-                filename,
-                ".tex")
-                .directory(new File(directory))
-                .start();
- //       run.exec("pdflatex " + filename + ".tex src/main/resources");
-        } catch (Exception e){
+            if (br.readLine() == null) {
+                return false;
+            }
+            pro = new ProcessBuilder("pdflatex", filename, ".tex")
+                    .directory(new File(directory))
+                    .start();
+        } catch (Exception e) {
             return false;
         }      
-        
         return true;
     }
 }

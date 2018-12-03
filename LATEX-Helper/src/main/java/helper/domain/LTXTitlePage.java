@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Aleksi
  */
-public class LTXTitlePage implements Serializable{
+public class LTXTitlePage implements Serializable {
     private boolean pageNumsOn;
     private String author;
     private String opens;

@@ -18,8 +18,8 @@ public class QuoteParser implements MicroParser {
     @Override
     public String parse(String str) {
         String out = "";
-        ArrayList<String> sents = new ArrayList(Arrays.asList(str.split("(?<=\\.)")));
-        
+        ArrayList<String> sents = new ArrayList(
+                Arrays.asList(str.split("(?<=\\.)")));
         for (String sent:sents) {
             boolean prevWasOpen = false;
             for (int i = 0; i < sent.length(); i++) {
