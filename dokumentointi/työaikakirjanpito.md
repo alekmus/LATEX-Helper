@@ -8,4 +8,5 @@
 |27.11|8|Pakkauskaavio, dao, latex-render ja asetukset|
 |29.11|2|pdf-export|
 |2.12|4|exportteja ja tallennus|
-Yhteensä: 47h
+|3.12|2|jar ja siistimisiä|
+Yhteensä: 49h
