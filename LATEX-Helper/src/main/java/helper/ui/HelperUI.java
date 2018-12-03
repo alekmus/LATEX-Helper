@@ -77,7 +77,7 @@ public class HelperUI extends Application{
         ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         //Initialize the database class and store saved LATEX-notations to nots
-        this.madao = new MathDao("src/main/resources/helper.db");
+        this.madao = new MathDao();
         this.nots = madao.notations();
         
         //Initalize the target code document

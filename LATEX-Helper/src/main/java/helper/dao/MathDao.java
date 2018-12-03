@@ -14,12 +14,7 @@ import java.util.*;
  */
 
 public class MathDao implements Dao {
-    private String dbloc;
     
-    
-    public MathDao(String databaselocation) {
-        this.dbloc = "jdbc:sqlite::resource:helper.db";
-    }
     
     @Override
     public String find(String str) {
@@ -30,10 +25,8 @@ public class MathDao implements Dao {
         }
         String result = "";
         
-        try {
-            Connection connection = DriverManager.getConnection(this.dbloc);
-            
-            
+        try (Connection connection = DriverManager
+                    .getConnection("jdbc:sqlite::resource:helper.db")){
             String query = "Select * FROM mathformulas WHERE name = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, str);
@@ -52,7 +45,8 @@ public class MathDao implements Dao {
         Class.forName("org.sqlite.JDBC");
         ArrayList<String> nots = new ArrayList();
         
-        try (Connection connection = DriverManager.getConnection(this.dbloc)) {
+        try (Connection connection = DriverManager
+                .getConnection("jdbc:sqlite::resource:helper.db")) {
             String query = "Select * FROM mathformulas ORDER BY name ASC";
             ResultSet rs = connection.createStatement().executeQuery(query);
             
