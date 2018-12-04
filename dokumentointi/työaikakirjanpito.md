@@ -9,4 +9,5 @@
 |29.11|2|pdf-export|
 |2.12|4|exportteja ja tallennus|
 |3.12|2|jar ja siistimisiä|
-Yhteensä: 49h
+|4.12|4|checkstyle ja testit sekä joitain päivityksiä ohjelmaan|
+Yhteensä: 53h
