@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SectionParser implements MacroParser {
-    private final int titleLength = 30;
+    private int titleLength = 30;
     private String sectionStyle;
     
     public SectionParser() {
         this.sectionStyle = "\\section*{";
+    }
+    
+    public void setTitleLength(int len) {
+        this.titleLength = len;
     }
     
     public void setNumStyle() {

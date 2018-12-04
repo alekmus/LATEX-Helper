@@ -27,6 +27,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -232,13 +233,56 @@ public class HelperUI extends Application{
         });
         
         packbuttons.getChildren().addAll(addpack,removepack);
-                
-        packoptions.getChildren().addAll(pack,packdetails);        
+        
+        HBox hidetitlebox = new HBox();
+        CheckBox showtitle = new CheckBox();
+        showtitle.selectedProperty().addListener((obs, o, n) -> {
+            lcd.setShowTitle(n);
+            txtTarget.setText(lcd.toString());
+        });
+        showtitle.selectedProperty().set(true);
+        Label showtitlelabel = new Label("Title page");
+        showtitlelabel.setPrefWidth(100);
+        hidetitlebox.getChildren().addAll(showtitlelabel,
+                showtitle);
+        hidetitlebox.setSpacing(10);
+        
+        HBox pagenumbox = new HBox();
+        CheckBox shownums = new CheckBox();
+        shownums.selectedProperty().set(true);
+        shownums.selectedProperty().addListener((obs, o, n) -> {
+            lcd.getTitlePage().setpageNumsOn(n);
+            txtTarget.setText(lcd.toString());
+        });
+        Label pagenumlabel = new Label("Pagenumbering");
+        pagenumlabel.setPrefWidth(100);
+        pagenumbox.getChildren().addAll(pagenumlabel, shownums);
+        pagenumbox.setSpacing(10);
+        
+        HBox tablebox = new HBox();
+        CheckBox showtable = new CheckBox();
+        showtable.selectedProperty().set(true);
+        showtable.selectedProperty().addListener((obs, o, n) -> {
+            lcd.getTitlePage().settableOCOn(n);
+            txtTarget.setText(lcd.toString());
+        });
+        Label tablelabel = new Label("Table of contents");
+        tablelabel.setPrefWidth(100);
+        tablebox.getChildren().addAll(tablelabel, showtable);
+        tablebox.setSpacing(10);
+        
+        packoptions.getChildren().addAll(pack, packdetails);
+        setupsetup.setSpacing(5);
+        
         setupsetup.getChildren().addAll(new Label("Packages:"),
                 packs,
                 packlabel,
                 packoptions,
-                packbuttons);
+                packbuttons,
+                new Label("Title options:"),
+                hidetitlebox,
+                pagenumbox,
+                tablebox);
         
         setupoptions.setContent(setupsetup);
         
@@ -291,7 +335,8 @@ public class HelperUI extends Application{
         for (int i = 1; i < 81; i++){
             fontsize.getItems().add(String.valueOf(i)+"pt");
         }
-        fontsize.getSelectionModel().select("12pt");
+        
+        fontsize.getSelectionModel().select(lcd.getHeader().getFontSize());
         fontsize.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, o, n) -> {
@@ -320,6 +365,22 @@ public class HelperUI extends Application{
         
         // menubar
         Menu file = new Menu("File");
+        MenuItem newItem = new MenuItem("New");
+        newItem.setOnAction((e) -> {
+            try {
+                init();
+            } catch (Exception ex){
+                System.out.println(ex);
+            }   
+            fontsize.getSelectionModel()
+                    .select(lcd.getHeader().getFontSize());
+            author.setText(lcd.getTitlePage().getAuthor());
+            title.setText(lcd.getTitlePage().getTitle());
+            txt.setText(lcd.getText());
+            packs.getItems().setAll(lcd.getPackages());
+            showtitle.selectedProperty().set(true);
+        });
+        
         MenuItem openItem = new MenuItem("Open");
         openItem.setOnAction((e) -> {
             FileChooser openChooser = new FileChooser();
@@ -333,6 +394,7 @@ public class HelperUI extends Application{
                 title.setText(lcd.getTitlePage().getTitle());
                 txt.setText(lcd.getText());
                 packs.getItems().setAll(lcd.getPackages());
+                showtitle.selectedProperty().set(lcd.getShowTitle());
             }
         });
         
@@ -387,7 +449,7 @@ public class HelperUI extends Application{
             System.exit(0);
         });
         
-        file.getItems().addAll(openItem, saveItem, export, exitItem);
+        file.getItems().addAll(newItem, openItem, saveItem, export, exitItem);
         
         
         MenuBar menubar = new MenuBar(file);

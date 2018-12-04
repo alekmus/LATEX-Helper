@@ -9,6 +9,7 @@ public class LTXCodeDoc implements Serializable {
     private String text;
     private ParserCollection pc;
     private LTXTitlePage titlePage;
+    private boolean showTitle;
     
     public LTXCodeDoc(Header header, ParserCollection pc, LTXTitlePage ltp) {
         this.pc = pc;
@@ -16,12 +17,15 @@ public class LTXCodeDoc implements Serializable {
         this.doc = "";
         this.titlePage = ltp; 
         this.text = "";
+        this.showTitle = true;
     }
     
-    public LTXCodeDoc(Header header, ParserCollection pc) {
-        this.pc = pc;
-        this.header = header;
-        this.doc = "";
+    public void setShowTitle(boolean val) {
+        this.showTitle = val;
+    }
+    
+    public boolean getShowTitle() {
+        return this.showTitle;
     }
     
     public void setDoc(String replacement) {
@@ -88,7 +92,7 @@ public class LTXCodeDoc implements Serializable {
         str +=  "\\begin{"
                 + this.header.getDoctype()
                 + "}\n";
-        if (this.titlePage != null) {
+        if (this.showTitle) {
             str += this.titlePage;
         }
         

@@ -21,7 +21,7 @@ public class LTXTitlePage implements Serializable {
     
     public LTXTitlePage() {
         this.pageNumsOn = true;
-        this.author = "Author";
+        this.author = "";
         this.opens = "{\\begingroup\n"
                 + "\\centering\n"
                 + "\\pagenumbering{gobble}\n"
@@ -57,6 +57,14 @@ public class LTXTitlePage implements Serializable {
         return this.opens;
     }
     
+    public void settableOCOn(boolean var) {
+        this.tableOCOn = var;
+    }
+    
+    public boolean getTableOCOn() {
+        return this.tableOCOn;
+    }
+    
     public void setCloses(String repl) {
         this.closes = repl;
     }
@@ -86,6 +94,8 @@ public class LTXTitlePage implements Serializable {
         
         if (this.pageNumsOn) {
             str += "\\pagenumbering{arabic}\n";
+        } else {
+            str += "\\pagenumbering{gobble}\n";
         }
         
         if (this.tableOCOn) {

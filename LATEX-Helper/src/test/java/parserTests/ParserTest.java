@@ -33,33 +33,32 @@ public class ParserTest {
         lp = new LineParser();
         qp = new QuoteParser();
         up = new UmlautParser();
-        pc = new ParserCollection(pp,sp,up,qp,lp);
     }
      
     @Test
-    public void paragraphParserCreatesNewlinesFromForwardTabs(){
+    public void paragraphParserCreatesNewlinesFromForwardTabs() {
         assertEquals("\nhello",pp.parse("   hello"));
     }
     
     @Test
-    public void paragraphParserDoesntCreateNewlinesFromBackTabs(){
+    public void paragraphParserDoesntCreateNewlinesFromBackTabs() {
         assertEquals("hello   ",pp.parse("hello   "));
     }
    
     @Test
-    public void paragraphParserDoesntCreateNewlinesFromMidTabs(){
+    public void paragraphParserDoesntCreateNewlinesFromMidTabs() {
         assertEquals("hel   lo",pp.parse("hel   lo"));
     }
     
     @Test
-    public void sectionParserCreatesSectionHeader(){
+    public void sectionParserCreatesSectionHeader() {
         ArrayList<String> list = sp.parse("hello");
         assertEquals("\\section*{hello}\n",list.get(0));
         
     }
     
     @Test
-    public void lineParserChopsUpLinesWithNewline(){
+    public void lineParserChopsUpLinesWithNewline() {
         ArrayList<String> list = lp.parse("hello\nI am a great big\nhuge womble");
         assertEquals("hello\n",list.get(0));
         assertEquals("I am a great big\\\\\n",list.get(1));
@@ -67,7 +66,7 @@ public class ParserTest {
     }
     
     @Test
-    public void umlautsWork(){
+    public void umlautsWork() {
         assertEquals("\\¨{a}",up.parse("ä"));
         assertEquals("\\¨{o}",up.parse("ö"));
         assertEquals("\\r{a}",up.parse("å"));
@@ -77,21 +76,18 @@ public class ParserTest {
     }
     
     @Test
-    public void parserCollectionSeparatesParsers(){
-        ArrayList<LTXParser> micros = new ArrayList();
-        micros.add(up);
-        micros.add(qp);
-        micros.add(pp);
-        ArrayList<LTXParser> macros = new ArrayList();
-        macros.add(sp);
-        macros.add(lp);
-        assertTrue(pc.getmacros().containsAll(macros));
-        assertTrue(pc.getmicros().containsAll(micros));
+    public void sectionparserhandlesnonwhitespacefirstline() {
+        sp.setTitleLength(1);
+        assertEquals("\\section*{}\na\n",sp.parse("a").get(0));
     }
     
     @Test
-    public void parserCollectionParseDocWorks(){
-        assertEquals("\\section*{Introduction}\nHow is everyone this should\n",
-                pc.parseDoc("Introduction\n\nHow is everyone this should")); 
+    public void secttionparsercreatesheaderandtext() {
+        assertEquals("\n\n\\section*{a}\nab",sp.parse("a\n\nab\n\na\n\nab").get(1));
+    }
+    
+    @Test
+    public void quotesclosecorrectly() {
+        assertEquals("``''",qp.parse("\"\""));
     }
 }    
