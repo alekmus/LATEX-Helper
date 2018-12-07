@@ -10,4 +10,5 @@
 |2.12|4|exportteja ja tallennus|
 |3.12|2|jar ja siistimisiä|
 |4.12|4|checkstyle ja testit sekä joitain päivityksiä ohjelmaan|
-Yhteensä: 53h
+|7.12|2|javadoc|
+Yhteensä: 55h
