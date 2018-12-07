@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper.domain;
 
 /**
- *
+ * Makes changes into strings to mimic the desired LaTEX notations
+ * based on raw text.
  * @author Aleksi
  */
 public interface MicroParser extends LTXParser<String> {

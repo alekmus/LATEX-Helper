@@ -2,7 +2,11 @@ package helper.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Stores the different components that make up the application's functionality.
+ * and manages their relationships.
+ * @author Aleksi
+ */
 public class LTXCodeDoc implements Serializable {
     private Header header;
     private String doc;

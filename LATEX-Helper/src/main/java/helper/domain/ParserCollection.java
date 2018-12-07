@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper.domain;
 
 import java.io.Serializable;
@@ -10,13 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Stores parsers and regulates their roles.
  * @author Aleksi
  */
 public class ParserCollection implements Serializable {
     private final List<MicroParser> microparsers;    
     private final List<MacroParser> macroparsers;
     
+    /**
+     * Accepts LTXParsers and separetes them into micro- and macroparsers based
+     * on their classes so they can be used in the parseDoc method in correct
+     * order.
+     * @param args LTXParsers wished to be used.
+     */
     public ParserCollection(LTXParser... args) {
         this.microparsers = new ArrayList();
         this.macroparsers = new ArrayList();
@@ -42,7 +43,13 @@ public class ParserCollection implements Serializable {
     public List<MacroParser> getmacros() {
         return this.macroparsers;
     }
-    
+    /**
+     * Takes a string and calls the parse method of the parser the class
+     * was given.
+     * @param docstring String of text that the parsers will be trying to mimic.
+     * @return A string in LaTEX format given the rules of the parsers the class
+     * has.
+     */
     public String parseDoc(String docstring) {
         ArrayList<String> parts = new ArrayList();
         ArrayList<String> temp = new ArrayList();

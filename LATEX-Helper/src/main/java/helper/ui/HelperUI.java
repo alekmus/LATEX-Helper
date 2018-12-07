@@ -421,7 +421,7 @@ public class HelperUI extends Application{
                     errorstage.setTitle("Export error");
                     TextArea errorArea = new TextArea();
                     errorArea.setText("This program uses the LaTEX distribution "
-                            + "to convert tex-files into pdf-files.\n"
+                            + "to convert tex-files into pdf files.\n"
                             + "Please make sure you have LaTEX installed before "
                             + "trying again to export the file.");
                     errorArea.setWrapText(true);

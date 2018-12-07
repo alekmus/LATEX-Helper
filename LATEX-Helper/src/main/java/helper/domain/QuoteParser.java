@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper.domain;
 
 import java.io.Serializable;
@@ -10,11 +5,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * Takes quotation marks and processes them into the preferred LaTEX format.
  * @author Aleksi
  */
 public class QuoteParser implements MicroParser {
-   
+    
+    /**
+     * Takes string with non-directional quotation marks and changes the into 
+     * directional quotation marks. Does not recognise nested quotes.
+     * @param str A String with non-directional quotes.
+     * @return input string but with directional quotes.
+     */
     @Override
     public String parse(String str) {
         String out = "";

@@ -3,6 +3,10 @@ package helper.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Saves the header information for the LTXCodeDoc
+ * @author Aleksi
+ */
 public class Header implements Serializable {
     private ArrayList<String> classdets;
     private String fontSize;
@@ -61,6 +65,11 @@ public class Header implements Serializable {
         this.fontSize = str;
     }
     
+    /**
+     * Returns the header information in the wanted format and regulates what
+     * information is shown based on user's reguirements.
+     * @return String of the header information
+     */    
     @Override
     public String toString() {
         String string = "\\documentclass[";

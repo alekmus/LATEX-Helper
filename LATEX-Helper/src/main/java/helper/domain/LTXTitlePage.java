@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper.domain;
 
 import java.io.Serializable;
 
 /**
- *
+ * Stores the information and functionality that is related to the title page of
+ * the LaTEX document
  * @author Aleksi
  */
 public class LTXTitlePage implements Serializable {
@@ -80,7 +76,11 @@ public class LTXTitlePage implements Serializable {
     public String getTitle() {
         return this.title;
     }
-    
+    /**
+     * Return the title page information and regulates what information is shown
+     * based on user's reguirements.
+     * @return String of titlePage information
+     */
     @Override
     public String toString() {
         String str = "";

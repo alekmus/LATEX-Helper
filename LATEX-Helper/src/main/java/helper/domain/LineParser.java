@@ -1,19 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * Separates a string into lines and creates the LaTEX "//" linebreak notations
+ * when needed.
  * @author Aleksi
  */
 public class LineParser implements MacroParser {
-    
+    /**
+     * Separates a string into a list based on newline characters. Adds
+     * LaTEX linebreak notations if the line isn't first or last and previous
+     * or next line doesn't have a tab or newline in the beginning.
+     * @param str String that will be split into lines
+     * @return ArrayList of lines with desired breaklines.
+     */
+    @Override
     public ArrayList<String> parse(String str) {
         ArrayList<String> parts = new ArrayList(
                                         Arrays.asList(str.split("\\n")));

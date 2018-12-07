@@ -1,23 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package helper.dao;
 
 import java.sql.*;
 import java.util.*;
 
 /**
- *
+ * Provides a connection to the project database and pulls saved
+ * LaTEX-formulas from the mathformulas table.
  * @author Aleksi
  */
-
 public class MathDao implements Dao {
-    
-    
+    /**
+     * Returns a LaTEX-formula based on a descriptive name.
+     * @param form name of a formula
+     * @return LaTEX-formula corresponding to the parameter
+     */
     @Override
-    public String find(String str) {
+    public String find(String form) {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e) {
@@ -28,7 +27,7 @@ public class MathDao implements Dao {
                     .getConnection("jdbc:sqlite::resource:helper.db")) {
             String query = "Select * FROM mathformulas WHERE name = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, str);
+            stmt.setString(1, form);
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
@@ -40,6 +39,11 @@ public class MathDao implements Dao {
         return result;
     }
     
+    /**
+     * Returns the notations used as the formulas' names in the database.
+     * @return A list of names for different formulas in the database
+     * @throws Exception 
+     */
     public ArrayList<String> notations() throws Exception {
         Class.forName("org.sqlite.JDBC");
         ArrayList<String> nots = new ArrayList();

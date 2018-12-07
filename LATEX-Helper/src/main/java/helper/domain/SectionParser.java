@@ -2,7 +2,12 @@ package helper.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * Splits a string into parts based on interpreted section changes. Tries to
+ * find headline for each section based on a give length seen reasonable for
+ * section headlines.
+ * @author Aleksi
+ */
 public class SectionParser implements MacroParser {
     private int titleLength = 30;
     private String sectionStyle;
@@ -23,6 +28,13 @@ public class SectionParser implements MacroParser {
         this.sectionStyle = "\\section*{";
     }
     
+    /**
+     * Takes a string and splits it based on newline characters. If short enough
+     * uses the first line after a split as a section headline. Otherwise just 
+     * uses the section number.
+     * @param str A String that is being split
+     * @return An ArrayList with perceived sections of the string.
+     */
     @Override
     public ArrayList<String> parse(String str) {
         ArrayList<String> parts = new ArrayList(
