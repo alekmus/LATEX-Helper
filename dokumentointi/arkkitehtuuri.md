@@ -7,7 +7,7 @@ Ohjelma rakentuu kahdesta tasosta. Käyttöliittymästä ja ohjelmalogiikasta. P
 
  Pakkaus helper.ui sisältää JavaFX:llä toteutetun käyttöliittymän (sekä kurssiteknisistä syistä testikäyttöliittymän ennen viimeistä palautusta), helper.domain sisältää merkkijonojen LaTex-formaattiin muuttamisesta vastaavan ohjelmistologiikan ja helper.dao pitää sisällään tietokantayhteyksistä vastaavat luokat.
 
-## käyttöliittymä
+## Käyttöliittymä
 Käyttöliittymä pitää sisällään yhden näkymän.
 
 Käyttöliittymä on eriytetty sovelluslogiikasta mahdollisimman pitkällä, ja se kutsuu helper.domain sekä helper.dao pakkausten olioiden metodeja.
