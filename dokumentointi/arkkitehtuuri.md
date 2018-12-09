@@ -5,7 +5,7 @@ Ohjelma rakentuu kahdesta tasosta. Käyttöliittymästä ja ohjelmalogiikasta. P
 
 ![pakkauskaavio](https://github.com/alekmus/LaTex-Helper/blob/master/dokumentointi/packagediagram.png)
 
- Pakkaus helper.ui sisältää JavaFX:llä toteutetun käyttöliittymän (sekä kurssiteknisistä syistä testikäyttöliittymän ennen viimeistä palautusta), helper.domain sisältää merkkijonojen LaTex-formaattiin muuttamisesta vastaavan ohjelmistologiikan ja helper.dao pitää sisällään tietokantayhteyksistä vastaavat luokat.
+ Pakkaus helper.ui sisältää JavaFX:llä toteutetun käyttöliittymän (sekä kurssiteknisistä syistä testikäyttöliittymän ennen viimeistä palautusta), helper.domain sisältää merkkijonojen LaTeX-formaattiin muuttamisesta vastaavan ohjelmistologiikan ja helper.dao pitää sisällään tietokantayhteyksistä vastaavat luokat.
 
 ## Käyttöliittymä
 Käyttöliittymä pitää sisällään yhden näkymän.
