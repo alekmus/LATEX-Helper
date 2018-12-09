@@ -10,7 +10,7 @@ java -jar LATEX-Helper.jar
 ## Käyttöliittymä
 Kun ohjelma aukeaa, sen käyttöliittymä näyttää seuraavanlaiselta:
 
-
+![Käyttöliittymä](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperui.png)
 
 Ohjelman käyttöliittymä koostuu viidestä osasta: tekstikentästä, LaTeX-kentästä, kaava-avustajasta, asiakirja-asetuksista ja tiedosto-asetuksista.
 
