@@ -1,4 +1,4 @@
-# LaTeX-Helper 
+# LaTeX-Helper
 Sovelluksen tarkoituksena on auttaa käyttäjää luomaan yksinkertainen tekstipainotteinen LATEX-dokumentti, joka mukailee tekstikentän muotoilua. Tavoitteena on myös mahdollistaa yleisimmin käytettyjen matemaattisten kaavojen etsiminen.
 
 Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjälle, joka tarvitsee ladontaohjelmaa vain yksinkertaisen dokumentin laatimiseksi ja jonka ei siten kannata opetella koko ladontajärjestelmän syntaksia.
@@ -6,9 +6,9 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 [Viikon 5 release](https://github.com/alekmus/LATEX-Helper/releases/tag/Viikko5)
 
 ## Dokumentaatio
-[Vaatimusmäärittely](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/Vaatimusm%C3%A4%C3%A4rittely.md) 
+[Vaatimusmäärittely](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/Vaatimusm%C3%A4%C3%A4rittely.md)
 
-[Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/ty%C3%B6aikakirjanpito.md) 
+[Työaikakirjanpito](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/ty%C3%B6aikakirjanpito.md)
 
 [Arkkitehtuuri](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/arkkitehtuuri.md)
 
@@ -21,4 +21,9 @@ mvn test
 Testikattavuusraportti luodaan komennolla
 ```
 mvn jacoco:report
+```
+
+JavaDoc luodaan komennolla
+```
+mvn javadoc:javadoc
 ```
