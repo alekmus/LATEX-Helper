@@ -28,6 +28,10 @@ public class LTXCodeDoc implements Serializable {
         this.showTitle = val;
     }
     
+    public void useSectionNums(boolean val) {
+        this.pc.replaceParserWith(new SectionParser(val));
+    }
+    
     public boolean getShowTitle() {
         return this.showTitle;
     }

@@ -13,20 +13,37 @@ public class SectionParser implements MacroParser {
     private String sectionStyle;
     
     public SectionParser() {
-        this.sectionStyle = "\\section*{";
+        this.sectionStyle = "\\section{";
     }
+    
+    public SectionParser(boolean usenums) {
+        if (usenums) {
+            this.sectionStyle = "\\section{";
+        } else {
+            this.sectionStyle = "\\section*{";
+        }
+        
+    }
+    
     
     public void setTitleLength(int len) {
         this.titleLength = len;
     }
     
-    public void setNumStyle() {
-        this.sectionStyle = "\\section{";
+    /**
+     * Defines if the LaTeX document should use section numbering or not
+     * @param usenums Boolean value representing if numbering is wanted
+     */
+    
+    public void useNumStyle(boolean usenums) {
+        if (usenums) {
+           this.sectionStyle = "\\section{"; 
+        } else {
+            this.sectionStyle = "\\section*{";
+        }
+        
     }
     
-    public void setNoNumStyle() {
-        this.sectionStyle = "\\section*{";
-    }
     
     /**
      * Takes a string and splits it based on newline characters. If short enough

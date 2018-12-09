@@ -254,11 +254,22 @@ public class HelperUI extends Application{
             lcd.getTitlePage().setpageNumsOn(n);
             txtTarget.setText(lcd.toString());
         });
-        Label pagenumlabel = new Label("Pagenumbering");
+        Label pagenumlabel = new Label("Page numbers");
         pagenumlabel.setPrefWidth(100);
         pagenumbox.getChildren().addAll(pagenumlabel, shownums);
         pagenumbox.setSpacing(10);
         
+        Label chlabel = new Label("Chapter numbers");
+        HBox chbox = new HBox();
+        CheckBox showch = new CheckBox();
+        showch.selectedProperty().set(true);
+        showch.selectedProperty().addListener((obs, o, n) ->{
+            lcd.useSectionNums(n);
+            txtTarget.setText(lcd.toString());
+        });
+        chlabel.setPrefWidth(100);
+        chbox.getChildren().addAll(chlabel, showch);
+        chbox.setSpacing(10);
         HBox tablebox = new HBox();
         CheckBox showtable = new CheckBox();
         showtable.selectedProperty().set(true);
@@ -282,6 +293,7 @@ public class HelperUI extends Application{
                 new Label("Title options:"),
                 hidetitlebox,
                 pagenumbox,
+                chbox,
                 tablebox);
         
         setupoptions.setContent(setupsetup);
