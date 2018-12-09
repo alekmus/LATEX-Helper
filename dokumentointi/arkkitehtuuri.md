@@ -52,7 +52,7 @@ DocExporter-olion save- ja open-metodit hyödyntävät LTXCodeDoc-luokan käytt�
 
 ExportToTeX-metodi taas hyödyntää FileWriter-luokkaa, sillä tex-tiedostot voidaan muuttaa txt tiedostoista yksinkertaisesti tiedostopäätettä muokkaamalla.
 
-Huomionarvoisinta tallennuksen yhteydessä on kuitenkin exportToPDF-metodi, joka edellyttää käyttäjän asentamaa LaTex-ohjelmistoa. Metodi kutsuu javan runtime-ympäristössä "pdfLaTex" komentoa, joka luo tex-tiedoston perusteella pdf-tiedoston ja tarvittavat lisätiedostot. Mikäli käyttäjä ei ole asentanut tarvittavaa ohjelmistoa tai lisännyt sitä polkuun, metodi ei tee mitään.
+Huomionarvoisinta tallennuksen yhteydessä on kuitenkin exportToPDF-metodi, joka edellyttää käyttäjän asentamaa LaTex-ohjelmistoa. Metodi kutsuu javan runtime-ympäristössä "pdfLaTex" komentoa, joka luo tex-tiedoston perusteella pdf-tiedoston ja tarvittavat lisätiedostot. Mikäli käyttäjä ei ole asentanut tarvittavaa ohjelmistoa tai lisännyt sitä polkuun, metodi ei palauttaa arvon false, eikä yritä tallentaa tiedostoa.
 
 ## Päätoiminnallisuus
 ### Tekstin muuntaminen LaTex-asiakirjaksi
