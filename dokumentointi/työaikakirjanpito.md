@@ -11,5 +11,5 @@
 |3.12|2|jar ja siistimisiä|
 |4.12|4|checkstyle ja testit sekä joitain päivityksiä ohjelmaan|
 |7.12|2|javadoc|
-|9.12|3|arkkitehtuurikuvausta, javadocia ja viikon vaatimuksia|
-Yhteensä: 58h
+|9.12|4|arkkitehtuurikuvausta, javadocia ja viikon vaatimuksia|
+Yhteensä: 59h
