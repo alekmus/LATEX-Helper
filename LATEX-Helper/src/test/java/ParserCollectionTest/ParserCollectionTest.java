@@ -60,7 +60,7 @@ public class ParserCollectionTest {
     
     @Test
     public void parserCollectionParseDocWorks(){
-        assertEquals("\\section*{Introduction}\nHow is everyone this should\n",
+        assertEquals("\\section{Introduction}\nHow is everyone this should\n",
                 pc.parseDoc("Introduction\n\nHow is everyone this should")); 
     }
     

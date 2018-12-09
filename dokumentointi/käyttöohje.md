@@ -10,12 +10,12 @@ java -jar LATEX-Helper.jar
 ## Käyttöliittymä
 Kun ohjelma aukeaa, sen käyttöliittymä näyttää seuraavanlaiselta:
 
-![Käyttöliittymä](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperui.png)
+
 
 Ohjelman käyttöliittymä koostuu viidestä osasta: tekstikentästä, LaTeX-kentästä, kaava-avustajasta, asiakirja-asetuksista ja tiedosto-asetuksista.
 
 ### Tekstikenttä
-![Tekstikenttä](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuitextfield.png)
+
 
 Käyttäjä syöttää tekstikenttään tekstin, jonka hän haluaa muuttaa LaTeX-asiakirjan leipätekstiksi.
 
@@ -29,17 +29,17 @@ Sisennetty rivi taas tulkitaan LaTeX-ohjelman kappalevaihdoksi, mutta kappaleita
 
 Käyttäjän antama syöte tulisikin olla kutakuinkin muodossa:
 
-    Otsikko
-     
-    leipätekstiä leipätekstiä
-        kappalevaihtotekstiäleipätekstiä
-
-    Toinen otsikko
-    
-    lisääleipätekstiä ja vielälisääleipätekstiä
+> Otsikko
+>
+>leipätekstiä leipätekstiä
+>    kappalevaihtotekstiäleipätekstiä
+>
+>Toinen otsikko
+>
+>lisääleipätekstiä ja vielälisääleipätekstiä
 
 ### LaTeX-kenttä
-![LaTeX-kenttä](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuitargetfield.png)
+
 
 LaTeX-kentässä näkyy koodi, jonka perusteella LaTeX-asiakirja luodaan.
 
@@ -48,7 +48,6 @@ Käyttäjä ei voi suoraan tehdä muutoksiä tähän kenttään, vaan kenttään
 Käyttäjä voi kuitenkin halutessaan kopioida tekstin tästä kentästä ja liittää sen ulkopuoliseen LaTeX-kääntäjään, esimerkiksi, jos hänen omalle koneelleen ei ole asennettuna tarvittavaa ohjelmistoa.
 
 ### Kaava-avustaja
-![Kaava-avustaja](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuiformula.png)
 
 Kaava-avustajan avulla käyttäjä voi hakea tavallisimpien matemaattisten kaavojen LaTeX-merkintöjä ohjelman sisällä ja liittää ne oman tekstinsä sisään.
 
@@ -57,26 +56,26 @@ Select Formula -painike avaa pudotusvalikon, jonka takana on on kaavojen nimiä.
 Käyttäjä voi myös kirjoittaa tekstikenttään omia kaavojaan ja preview -painike näyttää myös näiden esikatselukuvan.
 
 ### Asiakirja-asetukset
-![Asiakirja-asetukset](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuisettingspng.png)
+
 
 Asiakirja-asetukset pitävät sisällään asetukset, joita käyttäjä haluaa käyttää LaTeX-asiakirjassaan.
 
 Asetukset näyttävät seuraavalta:
 
-![Asetukset](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/settings.png)
+
 
 Asetuksien avulla käyttäjä voi muun muassa määrittää, mitä paketteja hän haluaa tiedostossaan käyttää, ja haluaako hän hyödyntää ohjelman valmista otsikkosivumallia.
 
 Näistä asetuksista käyttäjä valitsee myös haluamansa otsikon asiakirjalle sekä sen kirjoittajan.
 
 ### Tiedosto-asetukset
-![Tiedostoasetukset](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuimenu.png)
+
 
 Tiedostoasetuksista käyttäjä voi tallentaa ohjelman tilan sekä jatkaa siitä, mihin työnteko aiemmin jäi.
 
 Valikko näyttää seuraavalta:
 
-![Menu](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/filemenu.png)
+
 
 New-painike avaa kokonaan uuden asiakirjan. Painike pyyhkii tekstikentän sekä asettaa asetukset oletuksiin.
 

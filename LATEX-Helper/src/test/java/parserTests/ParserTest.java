@@ -53,6 +53,14 @@ public class ParserTest {
     @Test
     public void sectionParserCreatesSectionHeader() {
         ArrayList<String> list = sp.parse("hello");
+        assertEquals("\\section{hello}\n",list.get(0));
+        
+    }
+    
+    @Test
+    public void sectionParserCreatesSectionHeaderWithNoNumbers() {
+        sp = new SectionParser(false);
+        ArrayList<String> list = sp.parse("hello");
         assertEquals("\\section*{hello}\n",list.get(0));
         
     }
@@ -78,12 +86,12 @@ public class ParserTest {
     @Test
     public void sectionparserhandlesnonwhitespacefirstline() {
         sp.setTitleLength(1);
-        assertEquals("\\section*{}\na\n",sp.parse("a").get(0));
+        assertEquals("\\section{}\na\n",sp.parse("a").get(0));
     }
     
     @Test
     public void secttionparsercreatesheaderandtext() {
-        assertEquals("\n\n\\section*{a}\nab",sp.parse("a\n\nab\n\na\n\nab").get(1));
+        assertEquals("\n\n\\section{a}\nab",sp.parse("a\n\nab\n\na\n\nab").get(1));
     }
     
     @Test

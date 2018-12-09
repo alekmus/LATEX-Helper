@@ -37,7 +37,7 @@ public class SectionParser implements MacroParser {
     
     public void useNumStyle(boolean usenums) {
         if (usenums) {
-           this.sectionStyle = "\\section{"; 
+            this.sectionStyle = "\\section{"; 
         } else {
             this.sectionStyle = "\\section*{";
         }
