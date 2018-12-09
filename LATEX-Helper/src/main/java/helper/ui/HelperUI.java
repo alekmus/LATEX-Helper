@@ -323,11 +323,6 @@ public class HelperUI extends Application{
         
         VBox fontsetup = new VBox();
         
-        ComboBox<String> font = new ComboBox();        
-        
-        Label fontlabel = new Label("Font");
-        fontlabel.setPrefWidth(100);
-        HBox fontbox = new HBox(fontlabel,font);
         titlebox.setSpacing(5);
         
         ComboBox<String> fontsize = new ComboBox();
@@ -350,7 +345,7 @@ public class HelperUI extends Application{
         HBox fontsizebox = new HBox(fontsizelabel, fontsize);
         titlebox.setSpacing(5);
         
-        fontsetup.getChildren().addAll(fontbox,fontsizebox);
+        fontsetup.getChildren().addAll(fontsizebox);
         
         fontoptions.setContent(fontsetup);
         
