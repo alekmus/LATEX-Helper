@@ -29,14 +29,14 @@ Sisennetty rivi taas tulkitaan LaTeX-ohjelman kappalevaihdoksi, mutta kappaleita
 
 Käyttäjän antama syöte tulisikin olla kutakuinkin muodossa:
 
-> Otsikko
->
->leipätekstiä leipätekstiä
->    kappalevaihtotekstiäleipätekstiä
->
->Toinen otsikko
->
->lisääleipätekstiä ja vielälisääleipätekstiä
+ Otsikko
+
+leipätekstiä leipätekstiä
+    kappalevaihtotekstiäleipätekstiä
+
+Toinen otsikko
+
+lisääleipätekstiä ja vielälisääleipätekstiä
 
 ### LaTeX-kenttä
 ![LaTeX-kenttä](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/latexhelperuitargetfield.png)
