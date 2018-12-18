@@ -19,7 +19,9 @@ import helper.domain.SectionParser;
 import helper.domain.UmlautParser;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
@@ -78,7 +80,10 @@ public class HelperUI extends Application{
         ParserCollection pc = new ParserCollection(pp,sp,up,qp,lp);
         
         //Initialize the database class and store saved LATEX-notations to nots
-        this.madao = new MathDao();
+        Properties props = new Properties();
+        props.load(new FileInputStream("config.properties"));
+        String dbName = props.getProperty("dbName");
+        this.madao = new MathDao(dbName);
         this.nots = madao.notations();
         
         //Initalize the target code document

@@ -10,6 +10,12 @@ import java.util.*;
  * @author Aleksi
  */
 public class MathDao implements Dao {
+    private String dbase;
+    
+    public MathDao(String dbasename) {
+        this.dbase = "jdbc:sqlite::resource:" + dbasename;
+    }
+    
     /**
      * Returns a LaTEX-formula based on a descriptive name.
      * @param form name of a formula
@@ -24,7 +30,7 @@ public class MathDao implements Dao {
         }
         String result = "";
         try (Connection connection = DriverManager
-                    .getConnection("jdbc:sqlite::resource:helper.db")) {
+                    .getConnection(dbase)) {
             String query = "Select * FROM mathformulas WHERE name = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, form);
@@ -49,7 +55,7 @@ public class MathDao implements Dao {
         ArrayList<String> nots = new ArrayList();
         
         try (Connection connection = DriverManager
-                .getConnection("jdbc:sqlite::resource:helper.db")) {
+                .getConnection(dbase)) {
             String query = "Select * FROM mathformulas ORDER BY name ASC";
             ResultSet rs = connection.createStatement().executeQuery(query);
             
