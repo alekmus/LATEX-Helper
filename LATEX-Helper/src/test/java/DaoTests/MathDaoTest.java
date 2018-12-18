@@ -17,14 +17,12 @@ import org.junit.Test;
  * @author Aleksi
  */
 public class MathDaoTest {
-    
     private MathDao madao;
-    
    
     
     @Before
     public void setUp() {
-        madao = new MathDao();
+        madao = new MathDao("tester.db");
     }
     
     @Test

@@ -12,4 +12,5 @@
 |4.12|4|checkstyle ja testit sekä joitain päivityksiä ohjelmaan|
 |7.12|2|javadoc|
 |9.12|4|arkkitehtuurikuvausta, javadocia ja viikon vaatimuksia|
-Yhteensä: 59h
+|18.12|3|dokumentaation täydennys|
+Yhteensä: 62h
