@@ -8,6 +8,7 @@ java -jar LATEX-Helper.jar
 ```
 Ohjelma odottaa, että käynnistyshakemistosta löytyy konfiguraatiotiedosto config.properties, joka määrittelee tietokannan, josta ohjelma hakee kaava-avustajan tarjoamat ehdotukset LaTeX-kaavoista. 
 Tiedoston tulee olla muotoa:
+
     dbName = helper.db
 
 ## Käyttöliittymä
