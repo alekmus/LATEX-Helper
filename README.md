@@ -14,6 +14,8 @@ Tavoitteena on helpottaa LATEX-dokumenttien laatimista sellaiselle käyttäjäll
 
 [Käyttöohje](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/k%C3%A4ytt%C3%B6ohje.md)
 
+[Testausdokumentti](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/testausdokumentti.md)
+
 ## Komentorivitoiminnot
 Testit suoritetaan komennolla
 ```
