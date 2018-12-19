@@ -31,3 +31,8 @@ JavaDoc luodaan komennolla
 ```
 mvn javadoc:javadoc
 ```
+
+Suoritettava jar-tiedosto luodaan komennolla
+```
+mvn package
+```
