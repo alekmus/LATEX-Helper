@@ -43,7 +43,21 @@ public class ParserCollectionTest {
         pc = new ParserCollection(pp,sp,up,qp,lp);
     }
     
+    @Test
+    public void macroparsersCanBeReplaced() {
+        SectionParser tempsp = new SectionParser(false);
+        pc.replaceParserWith(tempsp);
+        assertTrue(pc.getmacros().contains(tempsp));
+        assertFalse(pc.getmacros().contains(sp));
+    }
     
+    @Test
+    public void microparsersCanBeReplaced() {
+        UmlautParser tempup = new UmlautParser();
+        pc.replaceParserWith(tempup);
+        assertTrue(pc.getmicros().contains(tempup));
+        assertFalse(pc.getmicros().contains(up));
+    }
 
     @Test
     public void parserCollectionSeparatesParsers(){

@@ -29,7 +29,7 @@ public class ParserTest {
     @Before
     public void setUp() {
         pp = new ParagraphParser();
-        sp = new SectionParser();
+        sp = new SectionParser(true);
         lp = new LineParser();
         qp = new QuoteParser();
         up = new UmlautParser();
@@ -90,8 +90,23 @@ public class ParserTest {
     }
     
     @Test
-    public void secttionparsercreatesheaderandtext() {
-        assertEquals("\n\n\\section{a}\nab",sp.parse("a\n\nab\n\na\n\nab").get(1));
+    public void sectionparsercreatesheaderandtext() {
+        ArrayList parsed = sp.parse("Test\n" +
+                        "\n" +
+                        "this is a test, a test\n" +
+                        "	a simple test. Who would think otherwise\n" +
+                        "\n" +
+                        "\n" +
+                        "easy peasy lemon squesy");
+        String sect1 = (String) parsed.get(0);
+        String sect2 = (String) parsed.get(1);
+        assertEquals("\\section{Test}\n" +
+                    "this is a test, a test\n" +
+                    "\ta simple test. Who would think otherwise\n" +
+                    "\n" +
+                    "\\section{}\n" +
+                    "easy peasy lemon squesy\n", sect1 + sect2);
+                    
     }
     
     @Test

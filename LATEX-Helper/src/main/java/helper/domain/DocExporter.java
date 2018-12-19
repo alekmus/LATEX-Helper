@@ -44,11 +44,16 @@ public class DocExporter {
     /**
      * Exports a string to a .tex file.
      * @param doc String that is being exported.
-     * @param file Location where the .tex file will be saved.
+     * @param targetfile Location where the .tex file will be saved.
      * @return Returns true if the export has been successfull and false if 
      * an exception is thrown while making the new file.
      */
-    public boolean exportToTeX(String doc, File file) {
+    public boolean exportToTeX(String doc, File targetfile) {
+        File file = targetfile;
+        String fpath = targetfile.getAbsolutePath();
+        if (!fpath.endsWith(".tex")) {
+            file = new File(fpath + ".tex");
+        }
         try (FileWriter fw = new FileWriter(file)) {
             fw.write(doc);
         } catch (Exception e) {
@@ -82,7 +87,7 @@ public class DocExporter {
             if (br.readLine() == null) {
                 return false;
             }
-            pro = new ProcessBuilder("pdflatex", filename, ".tex")
+            new ProcessBuilder("pdflatex", filename, ".tex")
                     .directory(new File(directory))
                     .start();
         } catch (Exception e) {

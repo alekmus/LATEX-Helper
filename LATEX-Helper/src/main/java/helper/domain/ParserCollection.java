@@ -41,27 +41,19 @@ public class ParserCollection implements Serializable {
      * @param parser A parser that replaces existing parser
      */
     public void replaceParserWith(LTXParser parser) {
-        if (parser.getClass()
-                .getInterfaces()[0]
+        Class pclass = parser.getClass();
+        if (pclass.getInterfaces()[0]
                 .getSimpleName().equals("MacroParser")) {
-            
             for (int i = 0; i < this.macroparsers.size(); i++) {
-                if (this.macroparsers.get(i)
-                        .getClass()
-                        .equals(parser.getClass())) {
+                if (this.macroparsers.get(i).getClass().equals(pclass)) {
                     this.macroparsers.set(i, (MacroParser) parser);
                     return;
                 }
             }
-            
-        } else if (parser.getClass()
-                .getInterfaces()[0]
-                .getSimpleName().equals("MacroParser")) {
-            
-            for (int i = 0; i < this.macroparsers.size(); i++) {
-                if (this.microparsers.get(i)
-                        .getClass()
-                        .equals(parser.getClass())) {
+        } else if (pclass.getInterfaces()[0].getSimpleName()
+                .equals("MicroParser")) {
+            for (int i = 0; i < this.microparsers.size(); i++) {
+                if (this.microparsers.get(i).getClass().equals(pclass)) {
                     this.microparsers.set(i, (MicroParser) parser);
                     return;
                 }

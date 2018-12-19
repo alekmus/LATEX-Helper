@@ -12,10 +12,18 @@ public class SectionParser implements MacroParser {
     private int titleLength = 30;
     private String sectionStyle;
     
+    /**
+     * Default constructor for using section numbering.
+     */
     public SectionParser() {
         this.sectionStyle = "\\section{";
     }
     
+    /**
+     * Constructor with additional parameter explicitly defining if section
+     * numbers are to be used.
+     * @param usenums Boolean value representing if section numbering is wanted
+     */
     public SectionParser(boolean usenums) {
         if (usenums) {
             this.sectionStyle = "\\section{";
@@ -28,20 +36,6 @@ public class SectionParser implements MacroParser {
     
     public void setTitleLength(int len) {
         this.titleLength = len;
-    }
-    
-    /**
-     * Defines if the LaTeX document should use section numbering or not
-     * @param usenums Boolean value representing if numbering is wanted
-     */
-    
-    public void useNumStyle(boolean usenums) {
-        if (usenums) {
-            this.sectionStyle = "\\section{"; 
-        } else {
-            this.sectionStyle = "\\section*{";
-        }
-        
     }
     
     

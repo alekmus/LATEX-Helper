@@ -13,4 +13,5 @@
 |7.12|2|javadoc|
 |9.12|4|arkkitehtuurikuvausta, javadocia ja viikon vaatimuksia|
 |18.12|3|dokumentaation täydennys|
-Yhteensä: 62h
+|19.12|3|testausta|
+Yhteensä: 65h
