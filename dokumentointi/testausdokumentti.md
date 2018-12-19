@@ -18,7 +18,7 @@ MathDao-luokkaa testattiin testitietokannalla, joka on rajoitettu versio ohjelma
 
 DocExporter-luokan testaamisessa hyödynnettiin JUnitin temporaryfolder-ruleja luotujen tiedostojen luomisen tarkastamiseen.
 
-###Testauskattavuus
+### Testauskattavuus
 Käyttöliittymä poislukien sovelluksen testauksen rivikattavuus on 83% ja haarautumiskattavuus 75%. 
 
 ![Jacoco report](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/testikattavuus.png)
