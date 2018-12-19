@@ -18,7 +18,7 @@ Integraatiotestit tapahtuvat pääasiassa ParserCollectionTest- ja LTXCodeDocTes
 ###Testauskattavuus
 Käyttöliittymä poislukien sovelluksen testauksen rivikattavuus on XX% ja haarautumiskattavuus XX%.
 
-![Jacoco report]()
+![Jacoco report](https://github.com/alekmus/LATEX-Helper/blob/master/dokumentointi/testikattavuus.png)
 
 ## Järjestelmätestaus
 Sovelluksen järjestelmätason testaus on suoritettu manuaalisesti. Tavanomainen toiminta dokumenttien luomisesta tallentamiseen erimuotoihin sekä tallennettujen tiedostojen avaaminen on testattu.
